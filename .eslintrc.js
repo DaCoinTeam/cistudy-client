@@ -1,8 +1,8 @@
+// eslint-disable-next-line no-undef
 module.exports = {
     "env": {
         "browser": true,
-        "es2021": true,
-        "node": true
+        "es2021": true
     },
     "extends": [
         "eslint:recommended",
@@ -21,14 +21,13 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "no-case-declarations": "off",
+        "no-mixed-spaces-and-tabs": "off",
         "indent": [
             "error",
             4
         ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
+        "linebreak-style": "off",
         "quotes": [
             "error",
             "double"

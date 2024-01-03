@@ -1,21 +1,20 @@
 "use client"
-import { Inter } from "next/font/google"
-
+import "./globals.css"
 import React from "react"
-import { NextUIProvider } from "@nextui-org/react"
+import { ReduxProviders } from "@redux"
+import WrappedRootLayout from "./_layout"
+import { ContextProps } from "./_shared"
+import { MetamaskProviders } from "./_hooks"
 
-const inter = Inter({ subsets: ["latin"] })
-
-export default function RootLayout({
-    children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout = (props: ContextProps) => {
     return (
-        <html lang='en'>
-            <body className={inter.className}>
-                <NextUIProvider> {children} </NextUIProvider>
-            </body>
-        </html>
+        <ReduxProviders> 
+            <MetamaskProviders>
+                <WrappedRootLayout>
+                    {props.children}
+                </WrappedRootLayout>   
+            </MetamaskProviders>
+        </ReduxProviders>
     )
 }
+export default RootLayout

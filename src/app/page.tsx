@@ -1,9 +1,11 @@
 import React from "react"
-const Home = () => {
+import { Body } from "./_components"
+
+export default function Home() {
     return (
-        <div>
-            <div>Trang</div>
+        <div className="max-w-[1280px] m-auto py-12 px-6">
+            <Body />
         </div>
+
     )
 }
-export default Home

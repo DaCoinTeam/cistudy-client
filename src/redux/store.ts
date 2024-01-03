@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import { blockchainReducer, blockchainInfoslice, configurationReducer, configurationSlice } from "./slices"
 
 const rootReducer =  combineReducers(
     {
-
+        [blockchainInfoslice.name]: blockchainReducer,
+        [configurationSlice.name]: configurationReducer
     }
 )
 export const store = configureStore({
