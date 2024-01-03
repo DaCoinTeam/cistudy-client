@@ -1,8 +1,9 @@
 import React from "react"
+import { CoursePreview } from "./_components"
 const Home = () => {
     return (
         <div>
-            <div>Trang</div>
+            <CoursePreview/>
         </div>
     )
 }
