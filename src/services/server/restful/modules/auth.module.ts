@@ -1,4 +1,4 @@
-import { SERVER_ENDPOINT } from "@config"
+import { SERVER_RESTFUL_ENDPOINT } from "@config"
 import axios from "axios"
 import utils from "@utils"
 import { UserDto } from "../../dto"
@@ -6,7 +6,7 @@ import { UserDto } from "../../dto"
 export default class Auth {
     baseUri: string
     constructor() {
-        this.baseUri = `${SERVER_ENDPOINT}auth/`
+        this.baseUri = `${SERVER_RESTFUL_ENDPOINT}/auth`
     }
 
     async verifyGoogleAccessToken(token: string): Promise<UserDto | null> {

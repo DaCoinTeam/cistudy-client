@@ -10,7 +10,9 @@ const SignInByGoogleIcon = () => {
     const auth = services.thirdParty.firebase.getAuth()
 
     const onClick = async () => {
+
         const credential = await signInWithPopup(auth, provider)
+        console.log(credential)
         const token = await credential.user.getIdToken()
         const response = await services.server.restful.auth.verifyGoogleAccessToken(token)
         console.log(response)
