@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "@heroicons/react": "^2.0.18",
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/providers": "^13.0.0",
@@ -23,6 +24,7 @@
     "firebase": "^10.4.0",
     "formik": "^2.4.5",
     "framer-motion": "^10.16.5",
+    "graphql": "^16.8.1",
     "http-status-codes": "^2.3.0",
     "js-untar": "^2.0.0",
     "keccak": "^3.0.4",
