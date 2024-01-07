@@ -2,15 +2,17 @@ export * from "./server"
 export * from "./third-party"
 export * from "./next"
 
-export * from "./graphql"
+export * from "./next"
+export * from "./server"
+export * from "./third-party"
 
-import graphQLService from "./graphql"
 import { nextServices } from "./next"
-import { thirdPartyService } from "./third-party"
+import serverService from "./server"
+import thirdPartyService from "./third-party"
 
 const services = {
     next: nextServices,
-    graphQL: graphQLService,
+    server: serverService,
     thirdParty: thirdPartyService
 }
 

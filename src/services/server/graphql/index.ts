@@ -1,10 +1,10 @@
 export * from "./dto"
 export * from "./modules"
 
-import { AuthGraphQL } from "./modules"
+import { Auth } from "./modules"
 
 const graphQLService = {
-    auth : new AuthGraphQL(),
+    auth : new Auth(),
 }
 
 export default graphQLService

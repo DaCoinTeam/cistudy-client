@@ -4,14 +4,14 @@ import {
     NormalizedCacheObject,
     gql,
 } from "@apollo/client"
-import { endpointConfig } from "@config"
+import { SERVER_GRAPHQL_ENDPOINT } from "@config"
 import { UserDto, UserDtoProperty } from "../dto"
-export default class AuthGraphQL {
+export default class Auth {
     private client: ApolloClient<NormalizedCacheObject>
 
     constructor() {
         this.client = new ApolloClient({
-            uri: endpointConfig().graphQL,
+            uri: SERVER_GRAPHQL_ENDPOINT,
             cache: new InMemoryCache(),
         })
     }

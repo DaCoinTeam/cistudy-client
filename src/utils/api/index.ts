@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosRequestConfig } from "axios"
 
 export const fetchAndCreateSvgBlobUrl = async (url: string) => {
     try {
@@ -20,3 +20,17 @@ export const convertBigIntsToStringsForResponse = <T>(param: T): T => {
         2
     ))
 }
+
+const createHeadersWithBearerToken = (token: string): AxiosRequestConfig => {
+    return {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+}
+
+const apiUtils = {
+    createHeadersWithBearerToken
+}
+
+export default apiUtils

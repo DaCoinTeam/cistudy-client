@@ -1,4 +1,3 @@
-export * from "./chart"
 export * from "./math"
 export * from "./api"
 export * from "./format"
@@ -8,6 +7,7 @@ export * from "./array"
 export * from "./web3"
 export * from "./time"
 
+import apiUtils from "./api"
 import arrayUtils from "./array"
 import formatUtils from "./format"
 import mathUtils from "./math"
@@ -19,7 +19,8 @@ const utils = {
     math: mathUtils,
     array: arrayUtils,
     format: formatUtils,
-    time: timeUtils
+    time: timeUtils,
+    api: apiUtils
 }
 
 export default utils

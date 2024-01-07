@@ -49,8 +49,8 @@ const findMinBigIntIndexAndValueExceptZero = (
 }
   
 const arrayUtils = {
-    findMaxBigIntIndexAndValue: findMaxBigIntIndexAndValue,
-    findMinBigIntIndexAndValueExceptZero: findMinBigIntIndexAndValueExceptZero,
+    findMaxBigIntIndexAndValue,
+    findMinBigIntIndexAndValueExceptZero,
 }
   
 export default arrayUtils

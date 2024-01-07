@@ -4,6 +4,8 @@ export * from "./firebase"
 
 import firebaseService from "./firebase"
 
-export const thirdPartyService = {
+const thirdPartyService = {
     firebase: firebaseService
 }
+
+export default thirdPartyService

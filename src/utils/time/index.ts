@@ -20,9 +20,9 @@ const secondsToUtc = (seconds: number): UTCTimestamp =>
   ) as UTCTimestamp
 
 const timeUtils = {
-    currentSeconds: currentSeconds,
-    getHoursFromUtcSeconds: getHoursFromUtcSeconds,
-    secondsToUtc: secondsToUtc,
+    currentSeconds,
+    getHoursFromUtcSeconds,
+    secondsToUtc,
 }
 
 export default timeUtils

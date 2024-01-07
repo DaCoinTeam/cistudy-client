@@ -33,11 +33,11 @@ const parseStringToNumberMultiply = (
 }
 
 const formatUtils = {
-    sanitizeNumericInput: sanitizeNumericInput,
-    shortenAddress: shortenAddress,
-    parseStringToNumber: parseStringToNumber,
-    parseNumberToString: parseNumberToString,
-    parseStringToNumberMultiply: parseStringToNumberMultiply
+    sanitizeNumericInput,
+    shortenAddress,
+    parseStringToNumber,
+    parseNumberToString,
+    parseStringToNumberMultiply
 }
 
 export default formatUtils
