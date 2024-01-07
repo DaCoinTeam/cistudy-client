@@ -8,18 +8,19 @@ import {
     CardHeader,
     Divider,
     Input,
-    Image,
-    Link,
     Spacer,
 } from "@nextui-org/react"
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import SignInByGoogleButton from "./SignInByGoogleButton"
 import ForgetPassword from "./ForgetPassword"
+import { FormikContext } from "../../_hooks"
 
 const MainSection = () => {
     const [isVisible, setIsVisible] = useState(false)
 
     const onClickToggleVisibility = () => setIsVisible(!isVisible)
+
+    const formik = useContext(FormikContext)!
 
     return (
         <Card className="w-[400px]">
@@ -29,9 +30,18 @@ const MainSection = () => {
             <Divider />
             <CardBody className="p-5 gap-4">
                 <div>
-                    <Input variant="flat" label="Email" />
-                    <Spacer y={4}/>
                     <Input
+                        id="email"
+                        variant="flat"
+                        label="Email"   
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        isInvalid={!!formik.errors.email}
+                        errorMessage={formik.errors.email}
+                    />
+                    <Spacer y={4} />
+                    <Input
+                        id="password"
                         endContent={
                             <button
                                 className="focus:outline-none"
@@ -48,13 +58,16 @@ const MainSection = () => {
                         variant="flat"
                         type={isVisible ? "text" : "password"}
                         label="Password"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        isInvalid={!!formik.errors.password}
+                        errorMessage={formik.errors.password}
                     />
-                    <Spacer y={6}/>
-                    <ForgetPassword/>
-                    <Spacer y={4}/>
+                    <Spacer y={6} />
+                    <ForgetPassword />
+                    <Spacer y={4} />
                     <AppButton text="Sign In" submit className="w-full" />
                 </div>
-               
             </CardBody>
             <Divider />
             <CardFooter className="p-5">

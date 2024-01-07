@@ -7,7 +7,7 @@ import {
 import { endpointConfig } from "@config"
 import { UserDto } from "../dto"
 export default class AuthGraphQL {
-    client: ApolloClient<NormalizedCacheObject>
+    private client: ApolloClient<NormalizedCacheObject>
 
     constructor() {
         this.client = new ApolloClient({
@@ -20,11 +20,14 @@ export default class AuthGraphQL {
         email: string,
         password: string
     ): Promise<Partial<UserDto> | null> {
+        console.log(this.client)
         try {
-            const { data } = await this.client.query({
+            const res = await this.client.query({
                 query: gql`
           query SignIn($email: String!, $password: String!) {
             signIn(input: { email: $email, password: $password }) {
+              firstName
+              lastName
               userId
             }
           }
@@ -34,6 +37,8 @@ export default class AuthGraphQL {
                     password,
                 },
             })
+
+            const { data } = res
             return data.signIn
         } catch (ex) {
             console.log(ex)
@@ -45,7 +50,13 @@ export default class AuthGraphQL {
         try {
             const { data } = await this.client.mutate({
                 mutation: gql`
-          mutation {
+          mutation SignUp(
+            $email: String!
+            $password: String!
+            $firstName: String!
+            $lastName: String!
+            $birthday: Date!
+          ) {
             signUp(
               input: {
                 email: $email
@@ -65,7 +76,7 @@ export default class AuthGraphQL {
                     password: params.password,
                     firstName: params.firstName,
                     lastName: params.lastName,
-                    birthday: params.birthday.toISOString()
+                    birthday: params.birthday,
                 },
             })
             return data.signUp
