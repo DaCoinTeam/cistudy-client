@@ -18,3 +18,17 @@ export interface UserDto {
   birthday?: Date;
   verified: boolean;
 }
+
+export type UserDtoProperty =
+  | "userId"
+  | "email"
+  | "password"
+  | "avatarUrl"
+  | "phoneNumber"
+  | "balance"
+  | "role"
+  | "walletId"
+  | "firstName"
+  | "lastName"
+  | "birthday"
+  | "verified";

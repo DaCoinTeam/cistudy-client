@@ -12,6 +12,8 @@ import {
 } from "@nextui-org/react"
 import React, { useContext, useState } from "react"
 import SignInByGoogleButton from "./SignInByGoogleButton"
+import SignInByFacebookButton from "./SignInByFacebookButton"
+
 import ForgetPassword from "./ForgetPassword"
 import { FormikContext } from "../../_hooks"
 
@@ -71,7 +73,10 @@ const MainSection = () => {
             </CardBody>
             <Divider />
             <CardFooter className="p-5">
-                <SignInByGoogleButton />
+                <div className="flex gap-5">
+                    <SignInByGoogleButton />
+                    <SignInByFacebookButton />
+                </div>
             </CardFooter>
         </Card>
     )

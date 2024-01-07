@@ -5,7 +5,7 @@ import {
     gql,
 } from "@apollo/client"
 import { endpointConfig } from "@config"
-import { UserDto } from "../dto"
+import { UserDto, UserDtoProperty } from "../dto"
 export default class AuthGraphQL {
     private client: ApolloClient<NormalizedCacheObject>
 
@@ -15,20 +15,19 @@ export default class AuthGraphQL {
             cache: new InMemoryCache(),
         })
     }
+    
 
     async signIn(
         email: string,
-        password: string
+        password: string,
+        desired?: UserDtoProperty[]
     ): Promise<Partial<UserDto> | null> {
-        console.log(this.client)
         try {
-            const res = await this.client.query({
+            const { data } = await this.client.query({
                 query: gql`
           query SignIn($email: String!, $password: String!) {
             signIn(input: { email: $email, password: $password }) {
-              firstName
-              lastName
-              userId
+             ${desired}
             }
           }
         `,
@@ -38,7 +37,6 @@ export default class AuthGraphQL {
                 },
             })
 
-            const { data } = res
             return data.signIn
         } catch (ex) {
             console.log(ex)
@@ -79,7 +77,7 @@ export default class AuthGraphQL {
                     birthday: params.birthday,
                 },
             })
-            return data.signUp
+            return data.signUp as UserDto
         } catch (ex) {
             console.log(ex)
             return null
@@ -94,3 +92,4 @@ export interface SignUpParams {
   lastName: string;
   birthday: Date;
 }
+
