@@ -4,6 +4,12 @@ export enum UserRole {
   Administrator = "Administrator",
 }
 
+export enum UserKind {
+  Local = "Local",
+  Google = "Google",
+  Facebook = "Facebook",
+}
+
 export interface UserDto {
   userId: string;
   email?: string;
@@ -17,6 +23,8 @@ export interface UserDto {
   lastName?: string;
   birthday?: Date;
   verified: boolean;
+  kind: UserKind;
+  externalUrl: string;
 }
 
 export type UserDtoProperty =

@@ -5,7 +5,7 @@ import {
     gql,
 } from "@apollo/client"
 import { SERVER_GRAPHQL_ENDPOINT } from "@config"
-import { UserDto, UserDtoProperty } from "../dto"
+import { UserDto, UserDtoProperty } from "../../dto"
 export default class Auth {
     private client: ApolloClient<NormalizedCacheObject>
 

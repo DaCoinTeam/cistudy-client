@@ -11,6 +11,9 @@ const SignInByGoogleIcon = () => {
 
     const onClick = async () => {
         const credential = await signInWithPopup(auth, provider)
+        const token = await credential.user.getIdToken()
+        const response = await services.server.restful.auth.verifyGoogleAccessToken(token)
+        console.log(response)
     }
   
     return (
