@@ -1,19 +1,19 @@
-import { SERVER_RESTFUL_ENDPOINT } from "@config"
+import { endpointConfig } from "@config"
 import axios from "axios"
 import utils from "@utils"
 import { UserDto } from "../../dto"
 
 export default class Auth {
-    baseUri: string
+    baseUrl: string
     constructor() {
-        this.baseUri = `${SERVER_RESTFUL_ENDPOINT}/auth`
+        this.baseUrl = `${endpointConfig().restful}/auth`
     }
 
-    async verifyGoogleAccessToken(token: string): Promise<UserDto | null> {
+    async signUp(token: string): Promise<UserDto | null> {
         try {
-            const uri = `${this.baseUri}/verify-google-access-token`
+            const url = `${this.baseUrl}/verify-google-access-token`
             const response = await axios.get(
-                uri,
+                url,
                 utils.api.createHeadersWithBearerToken(token)
             )
             return response.data as UserDto

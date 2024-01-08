@@ -8,6 +8,7 @@ import {
     CardHeader,
     Divider,
     Input,
+    Link,
     Spacer,
 } from "@nextui-org/react"
 import React, { useContext, useState } from "react"
@@ -35,7 +36,7 @@ const MainSection = () => {
                     <Input
                         id="email"
                         variant="flat"
-                        label="Email"   
+                        label="Email"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         isInvalid={!!formik.errors.email}
@@ -65,18 +66,29 @@ const MainSection = () => {
                         isInvalid={!!formik.errors.password}
                         errorMessage={formik.errors.password}
                     />
-                    <Spacer y={6} />
+                    <Spacer y={2} />
                     <ForgetPassword />
-                    <Spacer y={4} />
+                    <Spacer y={6} />
                     <AppButton text="Sign In" submit className="w-full" />
+                    <Spacer y={2} />
+                    <div className="flex gap-1">
+                        <span className="text-xs">Do not have account? </span>
+                        <Link
+                            className="text-xs text-teal-500 cursor-pointer"
+                            underline="always"
+                        >
+              Sign Up{" "}
+                        </Link>
+                    </div>
                 </div>
             </CardBody>
             <Divider />
             <CardFooter className="p-5">
-                <div className="flex gap-5">
+                <div className="flex gap-4">
                     <SignInByGoogleButton />
                     <SignInByFacebookButton />
                 </div>
+               
             </CardFooter>
         </Card>
     )

@@ -1,5 +1,6 @@
-export default (() => {
+export default () => {
     return {
-        graphQL : process.env.NEXT_PUBLIC_ENDPOINT_GRAPHQ
+        graphQL: process.env.NEXT_PUBLIC_SERVER_ENDPOINT_GRAPHQL,
+        restful: process.env.NEXT_PUBLIC_SERVER_ENDPOINT_RESTFUL,
     }
-})
+}

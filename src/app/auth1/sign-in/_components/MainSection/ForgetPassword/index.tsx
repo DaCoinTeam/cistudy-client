@@ -3,7 +3,7 @@ import React from "react"
 
 const ForgetPassword = () => {
     return (
-        <Link className="text-xs" underline="always" color="foreground">
+        <Link className="text-xs cursor-pointer" underline="always" color="foreground">
             {" "}
       Forget Password?{" "}
         </Link>
