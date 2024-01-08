@@ -3,9 +3,13 @@ import React from "react"
 import GoogleIcon from "./GoogleIcon"
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { thirdParty, server } from "@services"
+import { AppDispatch, setUser } from "@redux"
+import { useDispatch } from "react-redux"
 
 const SignInByGoogleIcon = () => {
     const provider = new GoogleAuthProvider()
+
+    const dispatch : AppDispatch = useDispatch()
 
     const auth = thirdParty.firebase.getAuth()
 
@@ -14,8 +18,11 @@ const SignInByGoogleIcon = () => {
         const credential = await signInWithPopup(auth, provider)
 
         const token = await credential.user.getIdToken()
-        const response = await server.graphql.auth.verifyGoogleAccessToken(token)
-        console.log(response)
+        const user = await server.graphql.auth.verifyGoogleAccessToken(token)
+        if (!user){
+            return
+        }
+        dispatch(setUser(user))
     }
   
     return (
