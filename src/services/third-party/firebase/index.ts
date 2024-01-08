@@ -1,7 +1,7 @@
 import { auth } from "./modules"
 
-const firebaseService = {
+const firebase = {
     getAuth : () => auth,
 }
 
-export default firebaseService
+export default firebase

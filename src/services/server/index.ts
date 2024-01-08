@@ -1,12 +1,12 @@
-import graphQLService from "./graphql"
-import restfulService from "./restful"
+import graphQL from "./graphql"
+import restful from "./restful"
 
 export * from "./graphql"
 export * from "./restful"
 
-const serverService = {
-    graphQL: graphQLService,
-    restful: restfulService
+const server = {
+    graphQL,
+    restful
 }
 
-export default serverService
+export default server

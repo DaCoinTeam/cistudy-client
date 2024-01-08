@@ -2,19 +2,19 @@ import { Button } from "@nextui-org/react"
 import React from "react"
 import GoogleIcon from "./GoogleIcon"
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import services from "@services"
+import { thirdParty, server } from "@services"
 
 const SignInByGoogleIcon = () => {
     const provider = new GoogleAuthProvider()
 
-    const auth = services.thirdParty.firebase.getAuth()
+    const auth = thirdParty.firebase.getAuth()
 
     const onClick = async () => {
 
         const credential = await signInWithPopup(auth, provider)
-        console.log(credential)
+
         const token = await credential.user.getIdToken()
-        const response = await services.server.graphQL.auth.verifyGoogleAccessToken(token)
+        const response = await server.graphQL.auth.verifyGoogleAccessToken(token)
         console.log(response)
     }
   

@@ -2,10 +2,12 @@ export * from "./ipfs"
 export * from "./pinata"
 export * from "./firebase"
 
-import firebaseService from "./firebase"
+import firebase from "./firebase"
 
-const thirdPartyService = {
-    firebase: firebaseService
+export { firebase }
+
+const thirdParty = {
+    firebase
 }
 
-export default thirdPartyService
+export default thirdParty
