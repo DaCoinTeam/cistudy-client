@@ -38,7 +38,7 @@ const FormikProviders = (props: ContextProps) => {
                 password: Yup.string().min(6),
             })}
             onSubmit={async (values) => {
-                const response = await server.graphQL.auth.signIn(
+                const response = await server.graphql.auth.signIn(
                     values.email,
                     values.password
                 )

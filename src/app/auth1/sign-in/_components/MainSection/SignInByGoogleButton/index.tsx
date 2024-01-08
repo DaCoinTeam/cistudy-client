@@ -14,7 +14,7 @@ const SignInByGoogleIcon = () => {
         const credential = await signInWithPopup(auth, provider)
 
         const token = await credential.user.getIdToken()
-        const response = await server.graphQL.auth.verifyGoogleAccessToken(token)
+        const response = await server.graphql.auth.verifyGoogleAccessToken(token)
         console.log(response)
     }
   

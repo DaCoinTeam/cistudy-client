@@ -3,8 +3,8 @@ export * from "./modules"
 
 import { Auth } from "./modules"
 
-const graphQLService = {
+const graphqlService = {
     auth : new Auth(),
 }
 
-export default graphQLService
+export default graphqlService

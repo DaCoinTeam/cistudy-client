@@ -1,11 +1,11 @@
-import graphQL from "./graphql"
+import graphql from "./graphql"
 import restful from "./restful"
 
 export * from "./graphql"
 export * from "./restful"
 
 const server = {
-    graphQL,
+    graphql,
     restful
 }
 

@@ -11,7 +11,7 @@ export default class Auth {
 
     constructor() {
         this.client = new ApolloClient({
-            uri: endpointConfig().graphQL,
+            uri: endpointConfig().graphql,
             cache: new InMemoryCache(),
         })
     }
