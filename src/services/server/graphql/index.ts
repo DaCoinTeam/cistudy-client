@@ -1,5 +1,5 @@
-export * from "../dtos"
 export * from "./modules"
+export * from "./shared"
 
 import { Auth } from "./modules"
 

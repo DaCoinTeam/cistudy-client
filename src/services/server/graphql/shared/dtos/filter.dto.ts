@@ -1,6 +1,6 @@
 export interface Filter<T> {
-    fields: (keyof T)[],
-    filterMode: FilterMode
+    fields?: (keyof T)[],
+    filterMode?: FilterMode
 }
 
 export enum FilterMode {

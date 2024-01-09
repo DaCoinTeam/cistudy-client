@@ -33,11 +33,6 @@ const parseStringToNumberMultiply = (
     return parseNumberToString(parsedNumber)
 }
 
-export enum FilterMode {
-  Include,
-  Skip,
-}
-
 const createPayloadString = <T>(
     keys: T[],
     fields: T[] = [],

@@ -2,10 +2,9 @@ import { Button } from "@nextui-org/react"
 import React from "react"
 import GoogleIcon from "./GoogleIcon"
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import { thirdParty, server } from "@services"
+import { thirdParty, server, FilterMode } from "@services"
 import { AppDispatch, setUser } from "@redux"
 import { useDispatch } from "react-redux"
-import { FieldSelectionMode } from "@utils"
 
 const SignInByGoogleIcon = () => {
     const provider = new GoogleAuthProvider()
@@ -19,7 +18,10 @@ const SignInByGoogleIcon = () => {
 
         const token = await credential.user.getIdToken()
         const user = await server.graphql.auth.verifyGoogleAccessToken(
-            token, ["avatarUrl", "balance", "userId"]
+            token, {
+                filterMode: FilterMode.Include,
+                fields: ["avatarUrl", "balance", "userId"]
+            }
         )
         if (!user) {
             return
