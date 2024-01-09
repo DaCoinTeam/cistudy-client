@@ -58,7 +58,7 @@ export default class Auth {
     ): Promise<Partial<UserDto> | null> {
         try {
             const payload = format.createTokenizedPayloadString(
-                userPayload,
+                userKeys,
                 fields,
                 mode
             )
