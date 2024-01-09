@@ -1,11 +1,11 @@
-import { endpointConfig } from "@config"
+import { environment } from "@config"
 import axios from "axios"
 import utils from "@utils"
 
 export default class AuthService {
     baseUrl: string
     constructor() {
-        this.baseUrl = `${endpointConfig().restful}/auth`
+        this.baseUrl = `${environment.endpoint().restful}/auth`
     }
 
     async signUp(token: string): Promise<string | null> {
