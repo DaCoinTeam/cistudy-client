@@ -7,7 +7,7 @@ import { TokenizedResponse, UserDto } from "../../dtos"
 import { format, storage } from "@utils"
 import { userKeys } from "../../dtos"
 import { client } from "./client"
-import { Filter } from "../shared"
+import { Filter, FilterMode } from "../shared"
 
 export default class Auth {
     private client: ApolloClient<NormalizedCacheObject>
@@ -25,7 +25,7 @@ export default class Auth {
             const payload = format.createTokenizedPayloadString(
                 userKeys,
                 filter?.fields, 
-                !!filter?.filterMode
+                filter?.filterMode == FilterMode.Exclude
             )
 
             const { data } = await this.client.query({
@@ -59,8 +59,11 @@ export default class Auth {
             const payload = format.createTokenizedPayloadString(
                 userKeys,
                 filter?.fields, 
-                !!filter?.filterMode
+                filter?.filterMode == FilterMode.Exclude
             )
+
+            console.log(payload)
+
             const { data } = await this.client.mutate({
                 mutation: gql`
           mutation VerifyGoogleAccessToken($token: String!) {

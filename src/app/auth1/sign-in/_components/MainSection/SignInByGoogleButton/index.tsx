@@ -20,7 +20,7 @@ const SignInByGoogleIcon = () => {
         const user = await server.graphql.auth.verifyGoogleAccessToken(
             token, {
                 filterMode: FilterMode.Include,
-                fields: ["avatarUrl", "balance", "userId"]
+                fields: ["avatarUrl"]
             }
         )
         if (!user) {

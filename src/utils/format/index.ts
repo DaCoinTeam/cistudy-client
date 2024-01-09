@@ -40,18 +40,18 @@ const createPayloadString = <T>(
 ): string => {
     let selected: T[] = []
 
-    if (excluded){
-        for (const field of fields) {
-            if (!selected.includes(field) && keys.includes(field)) {
-                selected.push(field)
-            }
-        }
-    } else {
+    if (excluded) {
         selected = keys
         for (const field of fields) {
             if (selected.includes(field)) {
                 const indexToRemove = selected.indexOf(field)
                 selected.slice(indexToRemove, 1)
+            }
+        }
+    } else {
+        for (const field of fields) {
+            if (!selected.includes(field) && keys.includes(field)) {
+                selected.push(field)
             }
         }
     }
