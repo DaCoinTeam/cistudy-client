@@ -40,16 +40,17 @@ const FormikProviders = (props: ContextProps) => {
                 password: Yup.string().min(6),
             })}
             onSubmit={async (values) => {
-                const response = await server.graphql.auth.signIn(
-                    values.email,
-                    values.password
-                )
-                if (api.parseErrorResponse(response)){
-
+                const response = await server.graphql.auth.signIn({
+                    email: values.email,
+                    password: values.password,
+                })
+                const parsed = api.parseErrorResponse(response)
+                if (parsed) {
+                    console.log("Lỗi rồi"+ parsed)
                 } else {
                     const _response = response as Partial<UserDto>
+                    console.log("Ok thành công" + _response)
                 }
-        
             }}
         >
             {(_props) => renderBody(_props, props.children)}

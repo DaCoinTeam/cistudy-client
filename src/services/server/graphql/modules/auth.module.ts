@@ -14,8 +14,10 @@ export default class Auth {
     }
 
     async signIn(
-        email: string,
-        password: string,
+        params: {
+      email: string;
+      password: string;
+    },
         filter?: Filter<UserDto>
     ): Promise<Partial<UserDto> | ErrorResponse> {
         try {
@@ -34,8 +36,8 @@ export default class Auth {
           }
         `,
                 variables: {
-                    email,
-                    password,
+                    email: params.email,
+                    params: params.password,
                 },
             })
 
@@ -50,7 +52,9 @@ export default class Auth {
     }
 
     async verifyGoogleAccessToken(
-        token: string,
+        params: {
+      token: string;
+    },
         filter?: Filter<UserDto>
     ): Promise<Partial<UserDto> | ErrorResponse> {
         try {
@@ -71,7 +75,7 @@ export default class Auth {
           }
         `,
                 variables: {
-                    token,
+                    token: params.token,
                 },
             })
             const response = data.verifyGoogleAccessToken as TokenizedResponse<

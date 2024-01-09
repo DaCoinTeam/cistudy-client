@@ -19,7 +19,10 @@ const SignInByGoogleIcon = () => {
 
         const token = await credential.user.getIdToken()
         const user = await server.graphql.auth.verifyGoogleAccessToken(
-            token, {
+            {
+                token
+            }
+            , {
                 filterMode: FilterMode.Exclude,
                 fields: ["userId"]
             }
