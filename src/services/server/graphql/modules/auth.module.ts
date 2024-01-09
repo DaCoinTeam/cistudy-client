@@ -26,15 +26,17 @@ export default class Auth {
         fields: (keyof UserDto)[] = []
     ): Promise<Partial<UserDto> | null> {
         try {
+            const payload = format.createTokenizedPayloadString(
+                userPayload,
+                fields,
+                mode
+            )
+
             const { data } = await this.client.query({
                 query: gql`
           query SignIn($email: String!, $password: String!) {
             signIn(input: { email: $email, password: $password }) {
-                ${format.createTokenizedPayloadString(
-        userPayload,
-        fields,
-        mode
-    )}
+                ${payload}
             }
           }
         `,
@@ -59,20 +61,16 @@ export default class Auth {
         mode: FieldSelectionMode = FieldSelectionMode.Skip
     ): Promise<Partial<UserDto> | null> {
         try {
-            console.log(format.createTokenizedPayloadString(
+            const payload = format.createTokenizedPayloadString(
                 userPayload,
                 fields,
                 mode
-            ))
+            )
             const { data } = await this.client.mutate({
                 mutation: gql`
           mutation VerifyGoogleAccessToken($token: String!) {
             verifyGoogleAccessToken(input: $token) {
-                    ${format.createTokenizedPayloadString(
-        userPayload,
-        fields,
-        mode
-    )}
+                    ${payload}
             }
           }
         `,
