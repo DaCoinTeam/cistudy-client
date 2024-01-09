@@ -13,5 +13,6 @@ export const userPayload: (keyof UserDto)[] = [
     "role",
     "userId",
     "verified",
+    "kind",
     "walletId",
 ]
