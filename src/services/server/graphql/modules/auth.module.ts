@@ -5,7 +5,7 @@ import {
 } from "@apollo/client"
 import { TokenizedResponse, UserDto } from "../../dto"
 import { FieldSelectionMode, format, storage } from "@utils"
-import { userPayload } from "../payloads"
+import { userKeys } from "../../dto"
 import { client } from "./client"
 
 export default class Auth {
@@ -23,7 +23,7 @@ export default class Auth {
     ): Promise<Partial<UserDto> | null> {
         try {
             const payload = format.createTokenizedPayloadString(
-                userPayload,
+                userKeys,
                 fields,
                 mode
             )

@@ -39,7 +39,7 @@ export enum FieldSelectionMode {
 }
 
 const createPayloadString = <T>(
-    payload: T[],
+    keys: T[],
     fields: T[] = [],
     mode: FieldSelectionMode = FieldSelectionMode.Skip
 ): string => {
@@ -47,13 +47,13 @@ const createPayloadString = <T>(
     switch (mode) {
     case FieldSelectionMode.Include:
         for (const field of fields) {
-            if (!selected.includes(field)) {
+            if (!selected.includes(field) && keys.includes(field)) {
                 selected.push(field)
             }
         }
         break
     case FieldSelectionMode.Skip:
-        selected = payload
+        selected = keys
         for (const field of fields) {
             if (selected.includes(field)) {
                 const indexToRemove = selected.indexOf(field)
@@ -66,11 +66,11 @@ const createPayloadString = <T>(
 }
 
 const createTokenizedPayloadString = <T>(
-    payload: T[],
+    keys: T[],
     fields: T[] = [],
     mode: FieldSelectionMode = FieldSelectionMode.Skip
 ) => {
-    const data = createPayloadString(payload, fields, mode)
+    const data = createPayloadString(keys, fields, mode)
     return `data { ${data} } tokens { accessToken, refreshToken }`
 }
 
@@ -81,7 +81,7 @@ const format = {
     parseNumberToString,
     parseStringToNumberMultiply,
     createPayloadString,
-    createTokenizedPayloadString
+    createTokenizedPayloadString,
 }
 
 export default format

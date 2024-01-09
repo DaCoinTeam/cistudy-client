@@ -34,16 +34,19 @@ export interface TokenizedResponse<T extends object> {
   tokens: Tokens
 }
 
-export type UserDtoProperty =
-  | "userId"
-  | "email"
-  | "password"
-  | "avatarUrl"
-  | "phoneNumber"
-  | "balance"
-  | "role"
-  | "walletId"
-  | "firstName"
-  | "lastName"
-  | "birthday"
-  | "verified";
+export const userKeys : (keyof UserDto)[] = [
+    "avatarUrl",
+    "balance",
+    "birthday",
+    "email",
+    "externalId",
+    "firstName",
+    "lastName",
+    "password",
+    "phoneNumber",
+    "role",
+    "userId",
+    "verified",
+    "kind",
+    "walletId",
+]
