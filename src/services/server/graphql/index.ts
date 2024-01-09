@@ -1,10 +1,10 @@
 export * from "./modules"
 export * from "./shared"
 
-import { Auth } from "./modules"
+import { AuthService } from "./modules"
 
-const graphqlService = {
-    auth : new Auth(),
+const graphql = {
+    auth : new AuthService(),
 }
 
-export default graphqlService
+export default graphql

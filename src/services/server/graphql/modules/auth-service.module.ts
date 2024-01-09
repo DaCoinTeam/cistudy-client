@@ -1,12 +1,11 @@
 import { ApolloClient, NormalizedCacheObject, gql } from "@apollo/client"
-import { TokenizedResponse, UserDto } from "../../dtos"
+import { TokenizedResponse, UserDto, userKeys } from "../../shared"
 import { ErrorResponse, format, storage } from "@utils"
-import { userKeys } from "../../dtos"
 import { client } from "./client"
 import { ExtensionsWithOriginalError, Filter, FilterMode } from "../shared"
 import { ApolloError } from "@apollo/client"
 
-export default class Auth {
+export default class AuthService {
     private client: ApolloClient<NormalizedCacheObject>
 
     constructor() {

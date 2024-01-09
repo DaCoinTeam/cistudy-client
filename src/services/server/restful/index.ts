@@ -1,7 +1,7 @@
-import { Auth } from "./modules"
+import { AuthService } from "./modules"
 
-const restfulService = {
-    auth : new Auth(),
+const restful = {
+    auth : new AuthService(),
 }
 
-export default restfulService
+export default restful

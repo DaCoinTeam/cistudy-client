@@ -1,5 +1,5 @@
-export * from "./auth.module"
+export * from "./auth-service.module"
 
-import Auth from "./auth.module"
+import AuthService from "./auth-service.module"
 
-export { Auth }
+export { AuthService }
