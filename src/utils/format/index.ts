@@ -33,7 +33,7 @@ const parseStringToNumberMultiply = (
     return parseNumberToString(parsedNumber)
 }
 
-export enum FieldSelectionMode {
+export enum FilterMode {
   Include,
   Skip,
 }
@@ -41,18 +41,17 @@ export enum FieldSelectionMode {
 const createPayloadString = <T>(
     keys: T[],
     fields: T[] = [],
-    mode: FieldSelectionMode = FieldSelectionMode.Skip
+    excluded: boolean = true
 ): string => {
     let selected: T[] = []
-    switch (mode) {
-    case FieldSelectionMode.Include:
+
+    if (excluded){
         for (const field of fields) {
             if (!selected.includes(field) && keys.includes(field)) {
                 selected.push(field)
             }
         }
-        break
-    case FieldSelectionMode.Skip:
+    } else {
         selected = keys
         for (const field of fields) {
             if (selected.includes(field)) {
@@ -60,17 +59,17 @@ const createPayloadString = <T>(
                 selected.slice(indexToRemove, 1)
             }
         }
-        break
     }
+
     return selected.join(", ")
 }
 
 const createTokenizedPayloadString = <T>(
     keys: T[],
     fields: T[] = [],
-    mode: FieldSelectionMode = FieldSelectionMode.Skip
+    excluded: boolean = true
 ) => {
-    const data = createPayloadString(keys, fields, mode)
+    const data = createPayloadString(keys, fields, excluded)
     return `data { ${data} } tokens { accessToken, refreshToken }`
 }
 

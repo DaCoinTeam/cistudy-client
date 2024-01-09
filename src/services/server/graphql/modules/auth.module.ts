@@ -4,9 +4,10 @@ import {
     gql,
 } from "@apollo/client"
 import { TokenizedResponse, UserDto } from "../../dto"
-import { FieldSelectionMode, format, storage } from "@utils"
+import { format, storage } from "@utils"
 import { userKeys } from "../../dto"
 import { client } from "./client"
+import { Filter } from "../shared"
 
 export default class Auth {
     private client: ApolloClient<NormalizedCacheObject>
@@ -18,14 +19,13 @@ export default class Auth {
     async signIn(
         email: string,
         password: string,
-        mode: FieldSelectionMode = FieldSelectionMode.Skip,
-        fields: (keyof UserDto)[] = []
+        filter? : Filter<UserDto>
     ): Promise<Partial<UserDto> | null> {
-        try {
+        try { 
             const payload = format.createTokenizedPayloadString(
                 userKeys,
-                fields,
-                mode
+                filter?.fields, 
+                !!filter?.filterMode
             )
 
             const { data } = await this.client.query({
@@ -53,14 +53,13 @@ export default class Auth {
 
     async verifyGoogleAccessToken(
         token: string,
-        fields: (keyof UserDto)[] = [],
-        mode: FieldSelectionMode = FieldSelectionMode.Skip
+        filter? : Filter<UserDto>,
     ): Promise<Partial<UserDto> | null> {
         try {
             const payload = format.createTokenizedPayloadString(
                 userKeys,
-                fields,
-                mode
+                filter?.fields, 
+                !!filter?.filterMode
             )
             const { data } = await this.client.mutate({
                 mutation: gql`
