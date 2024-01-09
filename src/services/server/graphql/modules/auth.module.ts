@@ -1,13 +1,10 @@
-import {
-    ApolloClient,
-    NormalizedCacheObject,
-    gql,
-} from "@apollo/client"
+import { ApolloClient, NormalizedCacheObject, gql } from "@apollo/client"
 import { TokenizedResponse, UserDto } from "../../dtos"
-import { format, storage } from "@utils"
+import { ErrorResponse, format, storage } from "@utils"
 import { userKeys } from "../../dtos"
 import { client } from "./client"
-import { Filter, FilterMode } from "../shared"
+import { ExtensionsWithOriginalError, Filter, FilterMode } from "../shared"
+import { ApolloError } from "@apollo/client"
 
 export default class Auth {
     private client: ApolloClient<NormalizedCacheObject>
@@ -19,13 +16,13 @@ export default class Auth {
     async signIn(
         email: string,
         password: string,
-        filter? : Filter<UserDto>
-    ): Promise<Partial<UserDto> | null> {
-        try { 
+        filter?: Filter<UserDto>
+    ): Promise<Partial<UserDto> | ErrorResponse> {
+        try {
             const payload = format.createTokenizedPayloadString(
                 userKeys,
-                filter?.fields, 
-                filter?.filterMode == FilterMode.Exclude
+                filter?.fields,
+                filter?.filterMode == FilterMode.Include
             )
 
             const { data } = await this.client.query({
@@ -46,20 +43,21 @@ export default class Auth {
             storage.saveTokens(response.tokens)
             return response.data
         } catch (ex) {
-            console.log(ex)
-            return null
+            const _ex = ex as ApolloError
+            return (_ex.graphQLErrors[0].extensions as ExtensionsWithOriginalError)
+                .originalError
         }
     }
 
     async verifyGoogleAccessToken(
         token: string,
-        filter? : Filter<UserDto>,
-    ): Promise<Partial<UserDto> | null> {
+        filter?: Filter<UserDto>
+    ): Promise<Partial<UserDto> | ErrorResponse> {
         try {
             const payload = format.createTokenizedPayloadString(
                 userKeys,
-                filter?.fields, 
-                filter?.filterMode == FilterMode.Exclude
+                filter?.fields,
+                filter?.filterMode == FilterMode.Include
             )
 
             console.log(payload)
@@ -82,8 +80,9 @@ export default class Auth {
             storage.saveTokens(response.tokens)
             return response.data
         } catch (ex) {
-            console.log(ex)
-            return null
+            const _ex = ex as ApolloError
+            return (_ex.graphQLErrors[0].extensions as ExtensionsWithOriginalError)
+                .originalError
         }
     }
 }

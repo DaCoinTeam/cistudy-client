@@ -3,6 +3,8 @@ import { Form, Formik, FormikProps } from "formik"
 import * as Yup from "yup"
 import React, { ReactNode, createContext } from "react"
 import { server } from "@services"
+import { api } from "@utils"
+import { UserDto } from "@services"
 
 interface FormikValues {
   email: string;
@@ -42,7 +44,12 @@ const FormikProviders = (props: ContextProps) => {
                     values.email,
                     values.password
                 )
-                console.log(response)
+                if (api.parseErrorResponse(response)){
+
+                } else {
+                    const _response = response as Partial<UserDto>
+                }
+        
             }}
         >
             {(_props) => renderBody(_props, props.children)}

@@ -5,6 +5,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { thirdParty, server, FilterMode } from "@services"
 import { AppDispatch, setUser } from "@redux"
 import { useDispatch } from "react-redux"
+import { AxiosError } from "axios"
 
 const SignInByGoogleIcon = () => {
     const provider = new GoogleAuthProvider()
@@ -19,10 +20,15 @@ const SignInByGoogleIcon = () => {
         const token = await credential.user.getIdToken()
         const user = await server.graphql.auth.verifyGoogleAccessToken(
             token, {
-                filterMode: FilterMode.Include,
-                fields: ["avatarUrl"]
+                filterMode: FilterMode.Exclude,
+                fields: ["userId"]
             }
         )
+            
+        if (typeof user === typeof AxiosError){
+            console.log("A")
+        }
+
         if (!user) {
             return
         }

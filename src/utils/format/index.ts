@@ -36,22 +36,22 @@ const parseStringToNumberMultiply = (
 const createPayloadString = <T>(
     keys: T[],
     fields: T[] = [],
-    excluded: boolean = true
+    included: boolean = false
 ): string => {
     let selected: T[] = []
 
-    if (excluded) {
+    if (included) {
+        for (const field of fields) {
+            if (!selected.includes(field) && keys.includes(field)) {
+                selected.push(field)
+            }
+        }
+    } else {
         selected = keys
         for (const field of fields) {
             if (selected.includes(field)) {
                 const indexToRemove = selected.indexOf(field)
                 selected.slice(indexToRemove, 1)
-            }
-        }
-    } else {
-        for (const field of fields) {
-            if (!selected.includes(field) && keys.includes(field)) {
-                selected.push(field)
             }
         }
     }
