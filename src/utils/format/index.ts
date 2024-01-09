@@ -20,7 +20,8 @@ const parseStringToNumber = (string: string, defaultValue?: number): number => {
     return parseValue
 }
 
-const parseNumberToString = (number: number): string => number !== 0 ? number.toString() : ""
+const parseNumberToString = (number: number): string =>
+    number !== 0 ? number.toString() : ""
 
 const parseStringToNumberMultiply = (
     string: string,
@@ -32,12 +33,55 @@ const parseStringToNumberMultiply = (
     return parseNumberToString(parsedNumber)
 }
 
-const formatUtils = {
+export enum FieldSelectionMode {
+  Include,
+  Skip,
+}
+
+const createPayloadString = <T>(
+    payload: T[],
+    fields: T[] = [],
+    mode: FieldSelectionMode = FieldSelectionMode.Skip
+): string => {
+    let selected: T[] = []
+    switch (mode) {
+    case FieldSelectionMode.Include:
+        for (const field of fields) {
+            if (!selected.includes(field)) {
+                selected.push(field)
+            }
+        }
+        break
+    case FieldSelectionMode.Skip:
+        selected = payload
+        for (const field of fields) {
+            if (selected.includes(field)) {
+                const indexToRemove = selected.indexOf(field)
+                selected.slice(indexToRemove, 1)
+            }
+        }
+        break
+    }
+    return selected.join(", ")
+}
+
+const createTokenizedPayloadString = <T>(
+    payload: T[],
+    fields: T[] = [],
+    mode: FieldSelectionMode = FieldSelectionMode.Skip
+) => {
+    const data = createPayloadString(payload, fields, mode)
+    return `data { ${data} } tokens { accessToken, refreshToken }`
+}
+
+const format = {
     sanitizeNumericInput,
     shortenAddress,
     parseStringToNumber,
     parseNumberToString,
-    parseStringToNumberMultiply
+    parseStringToNumberMultiply,
+    createPayloadString,
+    createTokenizedPayloadString
 }
 
-export default formatUtils
+export default format

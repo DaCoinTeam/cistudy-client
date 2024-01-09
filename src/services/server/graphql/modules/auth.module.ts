@@ -5,7 +5,10 @@ import {
     gql,
 } from "@apollo/client"
 import { endpointConfig } from "@config"
-import { UserDto, UserDtoProperty } from "../../dto"
+import { TokenizedResponse, UserDto } from "../../dto"
+import { FieldSelectionMode, format, storage } from "@utils"
+import { userPayload } from "../payloads"
+
 export default class Auth {
     private client: ApolloClient<NormalizedCacheObject>
 
@@ -19,14 +22,19 @@ export default class Auth {
     async signIn(
         email: string,
         password: string,
-        desired?: UserDtoProperty[]
+        mode: FieldSelectionMode = FieldSelectionMode.Skip,
+        fields: (keyof UserDto)[] = []
     ): Promise<Partial<UserDto> | null> {
         try {
             const { data } = await this.client.query({
                 query: gql`
           query SignIn($email: String!, $password: String!) {
             signIn(input: { email: $email, password: $password }) {
-             ${desired}
+                ${format.createTokenizedPayloadString(
+        userPayload,
+        fields,
+        mode
+    )}
             }
           }
         `,
@@ -36,7 +44,9 @@ export default class Auth {
                 },
             })
 
-            return data.signIn
+            const response = data.signIn as TokenizedResponse<Partial<UserDto>>
+            storage.saveTokens(response.tokens)
+            return response.data
         } catch (ex) {
             console.log(ex)
             return null
@@ -44,16 +54,25 @@ export default class Auth {
     }
 
     async verifyGoogleAccessToken(
-        token: string
+        token: string,
+        fields: (keyof UserDto)[] = [],
+        mode: FieldSelectionMode = FieldSelectionMode.Skip
     ): Promise<Partial<UserDto> | null> {
         try {
+            console.log(format.createTokenizedPayloadString(
+                userPayload,
+                fields,
+                mode
+            ))
             const { data } = await this.client.mutate({
                 mutation: gql`
           mutation VerifyGoogleAccessToken($token: String!) {
             verifyGoogleAccessToken(input: $token) {
-              userId,
-              firstName
-              lastName
+                    ${format.createTokenizedPayloadString(
+        userPayload,
+        fields,
+        mode
+    )}
             }
           }
         `,
@@ -61,7 +80,11 @@ export default class Auth {
                     token,
                 },
             })
-            return data.verifyGoogleAccessToken as UserDto
+            const response = data.verifyGoogleAccessToken as TokenizedResponse<
+        Partial<UserDto>
+      >
+            storage.saveTokens(response.tokens)
+            return response.data
         } catch (ex) {
             console.log(ex)
             return null

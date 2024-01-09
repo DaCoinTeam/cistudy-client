@@ -1,3 +1,5 @@
+import { Tokens } from "@utils"
+
 export enum UserRole {
   User = "User",
   Moderator = "Moderator",
@@ -24,7 +26,12 @@ export interface UserDto {
   birthday?: Date;
   verified: boolean;
   kind: UserKind;
-  externalUrl: string;
+  externalId: string;
+}
+
+export interface TokenizedResponse<T extends object> {
+  data: T;
+  tokens: Tokens
 }
 
 export type UserDtoProperty =
