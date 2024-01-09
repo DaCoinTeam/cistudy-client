@@ -1,22 +1,18 @@
 import {
     ApolloClient,
-    InMemoryCache,
     NormalizedCacheObject,
     gql,
 } from "@apollo/client"
-import { endpointConfig } from "@config"
 import { TokenizedResponse, UserDto } from "../../dto"
 import { FieldSelectionMode, format, storage } from "@utils"
 import { userPayload } from "../payloads"
+import { client } from "./client"
 
 export default class Auth {
     private client: ApolloClient<NormalizedCacheObject>
 
     constructor() {
-        this.client = new ApolloClient({
-            uri: endpointConfig().graphql,
-            cache: new InMemoryCache(),
-        })
+        this.client = client
     }
 
     async signIn(
