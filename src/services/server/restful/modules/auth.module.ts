@@ -1,7 +1,7 @@
 import { endpointConfig } from "@config"
 import axios from "axios"
 import utils from "@utils"
-import { UserDto } from "../../dto"
+import { UserDto } from "../../dtos"
 
 export default class Auth {
     baseUrl: string

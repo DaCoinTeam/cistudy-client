@@ -1,4 +1,4 @@
-export * from "../dto"
+export * from "../dtos"
 export * from "./modules"
 
 import { Auth } from "./modules"

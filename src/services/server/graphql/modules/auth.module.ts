@@ -3,9 +3,9 @@ import {
     NormalizedCacheObject,
     gql,
 } from "@apollo/client"
-import { TokenizedResponse, UserDto } from "../../dto"
+import { TokenizedResponse, UserDto } from "../../dtos"
 import { format, storage } from "@utils"
-import { userKeys } from "../../dto"
+import { userKeys } from "../../dtos"
 import { client } from "./client"
 import { Filter } from "../shared"
 
