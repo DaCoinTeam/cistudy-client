@@ -7,7 +7,7 @@ const httpLink = createHttpLink({
     uri: environment.endpoint().graphql,
 })
 
-const authorizedLink = (type: AuthTokenType) =>
+const withAuthorizationLink = (type: AuthTokenType) =>
     setContext((_, { headers }) => {
         const token = storage.getAuthToken(type)
         return {
@@ -18,19 +18,19 @@ const authorizedLink = (type: AuthTokenType) =>
         }
     })
 
-const unauthorizedLink = setContext((_, { headers }) => {
+const withoutAuthorizationLink = setContext((_, { headers }) => {
     return {
         headers,
     }
 })
 
-export const unauthorizedClient = new ApolloClient({
-    link: unauthorizedLink.concat(httpLink),
-    cache: new InMemoryCache(),
-})
-
-export const authorizedClient = (type: AuthTokenType) =>
+export const withAuthorizationClient = (type: AuthTokenType) =>
     new ApolloClient({
-        link: authorizedLink(type).concat(httpLink),
+        link: withAuthorizationLink(type).concat(httpLink),
         cache: new InMemoryCache(),
     })
+
+export const withoutAuthorizationClient = new ApolloClient({
+    link: withoutAuthorizationLink.concat(httpLink),
+    cache: new InMemoryCache(),
+})
