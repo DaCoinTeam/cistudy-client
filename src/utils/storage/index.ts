@@ -11,8 +11,8 @@ const saveTokens =(
 }
 
 export enum AuthTokenType {
-    Access,
-    Refresh,
+    Access = "Access",
+    Refresh = "Refresh",
   }
   
 const getAuthToken = (type: AuthTokenType): string | null =>
