@@ -7,7 +7,7 @@ import {
     format,
     storage,
 } from "@utils"
-import { withAuthorizationClient, withoutAuthorizationClient } from "./client"
+import { clientWithAuthorization, clientWithoutAuthorization } from "./client"
 import { ExtensionsWithOriginalError, Filter, FilterMode } from "../shared"
 import { ApolloError } from "@apollo/client"
 
@@ -21,7 +21,7 @@ export const init = async (
             filter?.fields,
             filter?.filterMode == FilterMode.Include
         )
-        const { data } = await withAuthorizationClient(type).query({
+        const { data } = await clientWithAuthorization(type).query({
             query: gql`
             query Init {
               init {
@@ -66,7 +66,7 @@ export const signIn = async (
             filter?.filterMode == FilterMode.Include
         )
 
-        const { data } = await withoutAuthorizationClient.query({
+        const { data } = await clientWithoutAuthorization.query({
             query: gql`
           query SignIn($email: String!, $password: String!) {
             signIn(input: { email: $email, password: $password }) {
@@ -105,7 +105,7 @@ export const verifyGoogleAccessToken = async (
 
         console.log(payload)
 
-        const { data } = await withoutAuthorizationClient.mutate({
+        const { data } = await clientWithoutAuthorization.mutate({
             mutation: gql`
           mutation VerifyGoogleAccessToken($token: String!) {
             verifyGoogleAccessToken(input: $token) {
