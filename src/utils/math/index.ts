@@ -20,21 +20,21 @@ import {
 } from "./blockchain-math.utils"
 
 const mathUtils = {
-    computeExponent: computeExponent,
-    computeInverse: computeInverse,
-    computeLeftShift: computeLeftShift,
-    computeRightShift: computeRightShift,
-    computeRound: computeRound,
-    computeBigIntMultiplyNumber: computeBigIntMultiplyNumber,
-    computeBigIntDivideNumber: computeBigIntDivideNumber,
-    computeBigIntDivideBigInt: computeBigIntDivideBigInt,
-    computePercentage: computePercentage,
-    computeRaw: computeRaw,
-    computeDivideX96: computeDivideX96,
-    computeMultiplyX96: computeMultiplyX96,
-    computeRedenomination: computeRedenomination,
-    computeSlippage: computeSlippage,
-    computePriceImpact: computePriceImpact
+    computeExponent,
+    computeInverse,
+    computeLeftShift,
+    computeRightShift,
+    computeRound,
+    computeBigIntMultiplyNumber,
+    computeBigIntDivideNumber,
+    computeBigIntDivideBigInt,
+    computePercentage,
+    computeRaw,
+    computeDivideX96,
+    computeMultiplyX96,
+    computeRedenomination,
+    computeSlippage,
+    computePriceImpact
 }
 
 export default mathUtils

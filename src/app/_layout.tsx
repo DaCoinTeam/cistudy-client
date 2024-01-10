@@ -1,12 +1,10 @@
 "use client"
 import { Open_Sans } from "next/font/google"
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { Navbar, Footer, WaitSignModal, WrongChainMetamaskModal } from "./_components"
-import { useDispatch, useSelector } from "react-redux"
-import { AppDispatch, RootState } from "@redux"
+import { useSelector } from "react-redux"
+import {  RootState } from "@redux"
 import { NextUIProvider } from "@nextui-org/react"
-import { FactoryContract } from "@blockchain"
-import { chainInfos } from "@config"
 import { ToastContainer } from "react-toastify"
 import "./_css/ReactToastify.css"
 import { IconContext } from "react-icons"
@@ -27,20 +25,7 @@ const WrappedRootLayout = (props: ContextProps) => {
 
     const chainId = useSelector((state: RootState) => state.blockchain.chainId)
 
-    const dispatch: AppDispatch = useDispatch()
     useMetamask()
-
-    useEffect(() => {
-        const handleEffect = async () => {
-            const factoryContract = new FactoryContract(chainId)
-            // const pairs = await factoryContract.getPairs(
-            //     chainInfos[chainId].exchangeToken, 
-            //     chainInfos[chainId].stableTokens[0])
-            // if (pairs === null || !pairs.length) return    
-            // dispatch(setDefaultPool(pairs[0]))
-        }
-        handleEffect()
-    }, [web3])
 
     return (
         <html lang="en" className={darkMode ? "dark" : "light"}>

@@ -1,9 +1,20 @@
 export * from "./server"
-export * from "./3rd"
+export * from "./third-party"
 export * from "./next"
 
-import { nextServices } from "./next"
+export * from "./next"
+export * from "./server"
+export * from "./third-party"
 
-export const services = {
-    next: nextServices,
+import server from "./server"
+import thirdParty from "./third-party"
+
+export { server, thirdParty }
+
+const services = {
+    server,
+    thirdParty
 }
+
+export default services
+

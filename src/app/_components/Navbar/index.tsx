@@ -9,18 +9,20 @@ import {
     NavbarMenu,
     NavbarMenuItem,
     NavbarMenuToggle,
+
 } from "@nextui-org/react"
 import { Logo } from "./Logo"
 import { useSelector } from "react-redux"
 import { RootState } from "@redux"
-import ConnectWalletButton from "./ConnectWalletButton"
-import ConnectedWalletSelect from "./ConnectedWalletSelect"
+// import ConnectWalletButton from "./ConnectWalletButton"
+// import ConnectedWalletSelect from "./ConnectedWalletSelect"
 import { useRouter } from "next/navigation"
-import ConnectedChain from "./ConnectedChain"
+// import ConnectedChain from "./ConnectedChain"
+import LoginButton from "./LoginButton"
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-    const account = useSelector((state: RootState) => state.blockchain.account)
+    // const account = useSelector((state: RootState) => state.blockchain.account)
     const defaultPool = useSelector(
         (state: RootState) => state.blockchain.defaultPool
     )
@@ -105,10 +107,11 @@ const Navbar = () => {
             </NavbarContent>
 
             <NavbarContent justify="end" className="gap-12">
-                <ConnectedChain />
+                {/* <ConnectedChain />
                 <div>
                     {account === "" ? <ConnectWalletButton /> : <ConnectedWalletSelect />}
-                </div>
+                </div> */}
+                <LoginButton />
             </NavbarContent>
 
             <NavbarMenu>

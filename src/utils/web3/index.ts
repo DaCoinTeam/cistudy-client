@@ -12,9 +12,9 @@ const bytesToNumber = (bytes: Bytes): number =>
     Number(web3.utils.hexToNumber(web3.utils.bytesToHex(bytes)))
 
 const web3Utils = {
-    bytesToAddress: bytesToAddress,
-    bytesToBigInt: bytesToBigInt,
-    bytesToNumber: bytesToNumber,
+    bytesToAddress,
+    bytesToBigInt,
+    bytesToNumber,
 }
 
 export default web3Utils
