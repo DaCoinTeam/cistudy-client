@@ -1,3 +1,5 @@
+import { Tokens } from "@utils"
+
 export enum UserRole {
   User = "User",
   Moderator = "Moderator",
@@ -24,19 +26,27 @@ export interface UserDto {
   birthday?: Date;
   verified: boolean;
   kind: UserKind;
-  externalUrl: string;
+  externalId: string;
 }
 
-export type UserDtoProperty =
-  | "userId"
-  | "email"
-  | "password"
-  | "avatarUrl"
-  | "phoneNumber"
-  | "balance"
-  | "role"
-  | "walletId"
-  | "firstName"
-  | "lastName"
-  | "birthday"
-  | "verified";
+export interface TokenizedResponse<T extends object> {
+  data: T;
+  tokens: Tokens
+}
+
+export const userKeys : (keyof UserDto)[] = [
+    "avatarUrl",
+    "balance",
+    "birthday",
+    "email",
+    "externalId",
+    "firstName",
+    "lastName",
+    "password",
+    "phoneNumber",
+    "role",
+    "userId",
+    "verified",
+    "kind",
+    "walletId",
+]

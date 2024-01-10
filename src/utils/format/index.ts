@@ -20,7 +20,8 @@ const parseStringToNumber = (string: string, defaultValue?: number): number => {
     return parseValue
 }
 
-const parseNumberToString = (number: number): string => number !== 0 ? number.toString() : ""
+const parseNumberToString = (number: number): string =>
+    number !== 0 ? number.toString() : ""
 
 const parseStringToNumberMultiply = (
     string: string,
@@ -32,12 +33,49 @@ const parseStringToNumberMultiply = (
     return parseNumberToString(parsedNumber)
 }
 
-const formatUtils = {
+const createPayloadString = <T>(
+    keys: T[],
+    fields: T[] = [],
+    included: boolean = false
+): string => {
+    let selected: T[] = []
+
+    if (included) {
+        for (const field of fields) {
+            if (!selected.includes(field) && keys.includes(field)) {
+                selected.push(field)
+            }
+        }
+    } else {
+        selected = keys
+        for (const field of fields) {
+            if (selected.includes(field)) {
+                const indexToRemove = selected.indexOf(field)
+                selected.slice(indexToRemove, 1)
+            }
+        }
+    }
+
+    return selected.join(", ")
+}
+
+const createTokenizedPayloadString = <T>(
+    keys: T[],
+    fields: T[] = [],
+    excluded: boolean = true
+) => {
+    const data = createPayloadString(keys, fields, excluded)
+    return `data { ${data} } tokens { accessToken, refreshToken }`
+}
+
+const format = {
     sanitizeNumericInput,
     shortenAddress,
     parseStringToNumber,
     parseNumberToString,
-    parseStringToNumberMultiply
+    parseStringToNumberMultiply,
+    createPayloadString,
+    createTokenizedPayloadString,
 }
 
-export default formatUtils
+export default format

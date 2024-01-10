@@ -3,6 +3,8 @@ import { Form, Formik, FormikProps } from "formik"
 import * as Yup from "yup"
 import React, { ReactNode, createContext } from "react"
 import { server } from "@services"
+import { api } from "@utils"
+import { UserDto } from "@services"
 
 interface FormikValues {
   email: string;
@@ -38,11 +40,17 @@ const FormikProviders = (props: ContextProps) => {
                 password: Yup.string().min(6),
             })}
             onSubmit={async (values) => {
-                const response = await server.graphql.auth.signIn(
-                    values.email,
-                    values.password
-                )
-                console.log(response)
+                const response = await server.graphql.auth.signIn({
+                    email: values.email,
+                    password: values.password,
+                })
+                const parsed = api.parseErrorResponse(response)
+                if (parsed) {
+                    console.log("Lỗi rồi"+ parsed)
+                } else {
+                    const _response = response as Partial<UserDto>
+                    console.log("Ok thành công" + _response)
+                }
             }}
         >
             {(_props) => renderBody(_props, props.children)}

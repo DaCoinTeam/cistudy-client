@@ -15,6 +15,7 @@ import { useMetamask } from "./_hooks"
 export const font = Open_Sans({ weight: "400", subsets: ["latin"] })
 
 const WrappedRootLayout = (props: ContextProps) => {
+
     const darkMode = useSelector(
         (state: RootState) => state.configuration.darkMode
     )
