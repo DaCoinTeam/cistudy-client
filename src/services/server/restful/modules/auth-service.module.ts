@@ -1,6 +1,6 @@
 import { environment } from "@config"
 import axios from "axios"
-import { ErrorResponse, api } from "@utils"
+import { ErrorResponse } from "@utils"
 
 export default class AuthService {
     baseUrl: string
@@ -8,12 +8,18 @@ export default class AuthService {
         this.baseUrl = `${environment.endpoint().restful}/auth`
     }
 
-    async signUp(token: string): Promise<string | ErrorResponse> {
+    async signUp(
+        params: {
+            email: string,
+            password: string,
+            firstName: string,
+            lastName: string,
+            birthdate: Date
+        }): Promise<string | ErrorResponse> {
         try {
-            const url = `${this.baseUrl}/verify-google-access-token`
-            const response = await axios.get(
-                url,
-                api.createHeadersWithBearerToken(token)
+            const url = `${this.baseUrl}/sign-up`
+            const response = await axios.post(
+                url, params
             )
             return response.data as string
         } catch (ex) {
