@@ -24,13 +24,10 @@ const linkWithoutAuthorization = setContext((_, { headers }) => {
     }
 })
 
-export const clientWithAuthorization = (type: AuthTokenType) =>
+export const client = (type: AuthTokenType | null = null) =>
     new ApolloClient({
-        link: linkWithAuthorization(type).concat(httpLink),
+        link: type
+            ? linkWithAuthorization(type).concat(httpLink)
+            : linkWithoutAuthorization.concat(httpLink),
         cache: new InMemoryCache(),
     })
-
-export const clientWithoutAuthorization = new ApolloClient({
-    link: linkWithoutAuthorization.concat(httpLink),
-    cache: new InMemoryCache(),
-})
