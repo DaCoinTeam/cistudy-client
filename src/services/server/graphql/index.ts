@@ -1,10 +1,14 @@
-export * from "./modules"
+export * from "./fetchers"
 export * from "./shared"
 
-import { AuthService } from "./modules"
+import { init, signIn, verifyGoogleAccessToken } from "./fetchers"
 
 const graphql = {
-    auth : new AuthService(),
+    auth: {
+        init,
+        signIn,
+        verifyGoogleAccessToken,
+    },
 }
 
 export default graphql

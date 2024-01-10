@@ -1,7 +1,7 @@
-import { AuthService } from "./modules"
+import { signUp } from "./fetchers"
 
 const restful = {
-    auth : new AuthService(),
+    auth : { signUp },
 }
 
 export default restful
