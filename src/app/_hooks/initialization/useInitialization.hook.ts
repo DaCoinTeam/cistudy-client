@@ -9,8 +9,8 @@ const useInitialization = () => {
     useEffect(() => {
         const handleEffect = async () => {
             const response = await server.graphql.auth.init()
-            const parsed = api.parseErrorResponse(response)
-            if (!parsed) {
+            const parsedError = api.parseErrorResponse(response)
+            if (!parsedError) {
                 const _response = response as Partial<UserDto>
                 dispath(setUser(_response))
             }
