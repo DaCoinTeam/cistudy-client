@@ -11,7 +11,7 @@ interface FormikValues {
   confirmPassword: string;
   firstName: string;
   lastName: string;
-   birthday: Date;
+   birthdate: Date;
 }
 
 const initialValues: FormikValues = {
@@ -20,7 +20,7 @@ const initialValues: FormikValues = {
     confirmPassword: "",
     firstName: "",
     lastName: "",
-    birthday:  new Date(),
+    birthdate:  new Date(),
 }
 
 
@@ -64,25 +64,20 @@ const FormikProviders = (props: ContextProps) => {
                     .required("Required"),
                 firstName: Yup.string().required("Required"),
 			    lastName: Yup.string().required("Required"),
-                birthday: Yup.date().required("Required"),             
+                birthdate: Yup.date().required("Required"),             
 
             })}
            
             onSubmit = {
-                () => {
+                () => {}
                 // async (values) => {
-                //     const response = await server.graphql.auth.signUp(
-                //         values.email,
-                //         values.password,
-                //         values.firstName,
-                //         values.lastName,
-                //         values.birthday
+                //     const response = await server.restful.auth.signUp(
+                        
+                //         )
+                //         console.log(response)
 
-                    //     )
-                    //     console.log(response)
-
+                
                 // }
-                }
             }
             
         

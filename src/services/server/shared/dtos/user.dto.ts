@@ -23,7 +23,7 @@ export interface UserDto {
   walletId?: string;
   firstName?: string;
   lastName?: string;
-  birthday?: Date;
+  birthdate?: Date;
   verified: boolean;
   kind: UserKind;
   externalId: string;
@@ -37,7 +37,7 @@ export interface TokenizedResponse<T extends object> {
 export const userKeys : (keyof UserDto)[] = [
     "avatarUrl",
     "balance",
-    "birthday",
+    "birthdate",
     "email",
     "externalId",
     "firstName",
