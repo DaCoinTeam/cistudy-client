@@ -37,9 +37,9 @@ const MainSection = () => {
                         onClick={onClickToggleVisibility}
                     >
                         {isVisible ? (
-                            <EyeSlashIcon className='w-3.5 h-3.5' />
+                            <EyeSlashIcon className='w4- h-4' />
                         ) : (
-                            <EyeIcon className='w-3.5 h-3.5' />
+                            <EyeIcon className='w-4 h-4' />
                         )}
                     </button>
                 }

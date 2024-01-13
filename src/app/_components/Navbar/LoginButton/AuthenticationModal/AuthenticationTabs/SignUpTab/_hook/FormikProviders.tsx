@@ -3,7 +3,7 @@ import { Form, Formik, FormikProps } from "formik"
 import React, { ReactNode, createContext } from "react"
 import * as Yup from "yup"
 import { ContextProps} from "@app/_shared"
-// import { server } from "@services"
+import { server } from "@services"
 
 interface FormikValues {
   email: string;
@@ -69,15 +69,19 @@ const FormikProviders = (props: ContextProps) => {
             })}
            
             onSubmit = {
-                () => {}
-                // async (values) => {
-                //     const response = await server.restful.auth.signUp(
-                        
-                //         )
-                //         console.log(response)
-
+                async (values) => {
+                    const response = await server.restful.auth.signUp(
+                        {
+                            email: values.email,
+                            password: values.password,
+                            firstName: values.firstName,
+                            lastName: values.lastName,
+                            birthdate: values.birthdate,
+                        },
+                    )
+                    console.log(response)
                 
-                // }
+                }
             }
             
         
