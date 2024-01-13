@@ -5,6 +5,9 @@ import { client } from "./client"
 import { ApolloError, gql } from "@apollo/client"
 
 export const findById = async (
+    params: {
+        courseId: string
+      },
     filter?: Filter<CourseDto>,
 ): Promise<Partial<CourseDto> | ErrorResponse> => {
     try {
@@ -15,12 +18,15 @@ export const findById = async (
         )
         const { data } = await client().query({
             query: gql`
-            query FindById {
-              findById($courseId: String!) {
+            query FindById($courseId: ID) {
+              findById(input: $courseId) {
                   ${payload}
               }
             }
           `,
+            variables : {
+                courseId : params.courseId
+            }
         })
 
         return data.findById as Partial<CourseDto>
