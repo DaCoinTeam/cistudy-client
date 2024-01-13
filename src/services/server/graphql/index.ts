@@ -1,7 +1,7 @@
 export * from "./fetchers"
 export * from "./shared"
 
-import { init, signIn, verifyGoogleAccessToken } from "./fetchers"
+import { findById, init, signIn, verifyGoogleAccessToken } from "./fetchers"
 
 const graphql = {
     auth: {
@@ -9,6 +9,9 @@ const graphql = {
         signIn,
         verifyGoogleAccessToken,
     },
+    course: {
+        findById
+    }
 }
 
 export default graphql
