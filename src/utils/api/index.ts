@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios"
+import axios from "axios"
 
 export const fetchAndCreateSvgBlobUrl = async (url: string) => {
     try {
@@ -23,32 +23,40 @@ export const convertBigIntsToStringsForResponse = <T>(param: T): T => {
     )
 }
 
-const createHeadersWithBearerToken = (token: string): AxiosRequestConfig => {
-    return {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    }
-}
-
 export interface ErrorResponse {
-    message: string | string[];
-    statusCode: number;
-    error: string;
-  }
+  message: string | string[];
+  statusCode: StatusCode;
+  error: string;
+}
 
 const parseErrorResponse = (response: unknown): null | ErrorResponse => {
     const _response = response as {
     statusCode: number;
   }
-  
-    if (_response.statusCode >=  400) return _response as ErrorResponse
+
+    if (_response.statusCode >= 400) return _response as ErrorResponse
     return null
+}
+
+export enum StatusCode {
+  OK = 200,
+  Created = 201,
+
+  BadRequest = 400,
+  Unauthorized = 401,
+  PaymentRequired = 402,
+  Forbidden = 403,
+  NotFound = 404,
+  MethodNotAllowed = 405,
+  NotAcceptable = 406,
+  RequestTimeout = 408,
+  Conflict = 409,
+
+  InternalServerError = 500,
 }
 
 const api = {
     parseErrorResponse,
-    createHeadersWithBearerToken,
 }
 
 export default api
