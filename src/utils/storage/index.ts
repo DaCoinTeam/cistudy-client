@@ -19,7 +19,7 @@ export enum AuthTokenType {
   Refresh = "Refresh",
 }
 
-const getAuthToken = (type: AuthTokenType): string | null =>
+const getAuthToken = (type: AuthTokenType = AuthTokenType.Access): string | null =>
     localStorage.getItem(
         type == AuthTokenType.Access ? ACCESS_TOKEN : REFRESH_TOKEN
     )

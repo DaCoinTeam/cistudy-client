@@ -27,7 +27,6 @@ export const courseKeys : (keyof CourseDto)[] = [
     "courseId",
     "creatorId",
     "description",
-    "includes",
     "isDeleted",
     "isDraft",
     "previewVideoUrl",
@@ -37,3 +36,21 @@ export const courseKeys : (keyof CourseDto)[] = [
     "title",
     "verifyStatus"
 ]
+
+interface X {
+    a?: boolean ,
+    b?: boolean,
+    c: {
+        d: boolean,
+        e: boolean
+    }
+}
+
+const x : x = {
+    a: true,
+    b : true,
+    c: {
+        a: true,
+        e: true
+    }
+}
