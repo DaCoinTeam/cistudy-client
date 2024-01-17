@@ -1,28 +1,27 @@
-import { ExtensionsWithOriginalError, Filter, FilterMode } from "../shared"
-import { CourseDto, courseKeys } from "../../shared"
+import { ExtensionsWithOriginalError } from "../shared"
+import { CourseDto, Transform } from "../../shared"
 import { ErrorResponse, format } from "@utils"
 import { client } from "./client"
 import { ApolloError, gql } from "@apollo/client"
 
-export const findById = async (
+export const findOne = async (
     params: {
         courseId: string
       },
-    filter?: Filter<CourseDto>,
+    structure?: Transform<CourseDto>,
 ): Promise<Partial<CourseDto> | ErrorResponse> => {
     try {
-        const payload = format.createPayloadString(
-            courseKeys,
-            filter?.fields,
-            filter?.filterMode == FilterMode.Include
+        const payload = format.buildPayloadString(
+            structure
         )
         const { data } = await client().query({
             query: gql`
-            query FindById($courseId: ID) {
-              findById(input: $courseId) {
-                  ${payload}
-              }
-            }
+            query findOne($courseId: ID!) {
+    findOne(input: { courseId: $courseId }) {
+      courseId
+      __typename
+    }
+  }
           `,
             variables : {
                 courseId : params.courseId

@@ -1,4 +1,4 @@
-export enum VerifyStatus {
+export enum VerifiedStatus {
   Pending = "Pending",
   Approved = "Approved",
   Rejected = "Rejected",
@@ -14,7 +14,7 @@ export interface CourseDto {
   thumbnailUrl?: string;
   description?: string;
   price?: number;
-  verifyStatus?: VerifyStatus;
+  verifiedStatus?: VerifiedStatus;
   isDraft?: boolean;
   creatorId?: string;
   isDeleted?: string;
@@ -34,23 +34,5 @@ export const courseKeys : (keyof CourseDto)[] = [
     "targets",
     "thumbnailUrl",
     "title",
-    "verifyStatus"
+    "verifiedStatus"
 ]
-
-interface X {
-    a?: boolean ,
-    b?: boolean,
-    c: {
-        d: boolean,
-        e: boolean
-    }
-}
-
-const x : x = {
-    a: true,
-    b : true,
-    c: {
-        a: true,
-        e: true
-    }
-}
