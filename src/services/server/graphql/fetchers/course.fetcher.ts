@@ -18,8 +18,7 @@ export const findOne = async (
             query: gql`
             query findOne($courseId: ID!) {
     findOne(input: { courseId: $courseId }) {
-      courseId
-      __typename
+      ${payload}
     }
   }
           `,
