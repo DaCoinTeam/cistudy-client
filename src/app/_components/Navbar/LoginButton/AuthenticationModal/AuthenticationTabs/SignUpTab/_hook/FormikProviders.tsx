@@ -3,7 +3,7 @@ import { Form, Formik, FormikProps } from "formik"
 import React, { ReactNode, createContext } from "react"
 import * as Yup from "yup"
 import { ContextProps} from "@app/_shared"
-// import { server } from "@services"
+import { server } from "@services"
 
 interface FormikValues {
   email: string;
@@ -11,7 +11,7 @@ interface FormikValues {
   confirmPassword: string;
   firstName: string;
   lastName: string;
-   birthday: Date;
+   birthdate: Date;
 }
 
 const initialValues: FormikValues = {
@@ -20,7 +20,7 @@ const initialValues: FormikValues = {
     confirmPassword: "",
     firstName: "",
     lastName: "",
-    birthday:  new Date(),
+    birthdate:  new Date(),
 }
 
 
@@ -64,24 +64,23 @@ const FormikProviders = (props: ContextProps) => {
                     .required("Required"),
                 firstName: Yup.string().required("Required"),
 			    lastName: Yup.string().required("Required"),
-                birthday: Yup.date().required("Required"),             
+                birthdate: Yup.date().required("Required"),             
 
             })}
            
             onSubmit = {
-                () => {
-                // async (values) => {
-                //     const response = await server.graphql.auth.signUp(
-                //         values.email,
-                //         values.password,
-                //         values.firstName,
-                //         values.lastName,
-                //         values.birthday
-
-                    //     )
-                    //     console.log(response)
-
-                // }
+                async (values) => {
+                    const response = await server.restful.auth.signUp(
+                        {
+                            email: values.email,
+                            password: values.password,
+                            firstName: values.firstName,
+                            lastName: values.lastName,
+                            birthdate: values.birthdate,
+                        },
+                    )
+                    console.log(response)
+                
                 }
             }
             
