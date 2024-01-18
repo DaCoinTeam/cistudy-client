@@ -1,5 +1,5 @@
 import { ExtensionsWithOriginalError } from "../shared"
-import { CourseDto, Transform } from "../../shared"
+import { CourseDto, Structure } from "../../shared"
 import { ErrorResponse, format } from "@utils"
 import { client } from "./client"
 import { ApolloError, gql } from "@apollo/client"
@@ -8,7 +8,7 @@ export const findOne = async (
     params: {
         courseId: string
       },
-    structure?: Transform<CourseDto>,
+    structure?: Structure<CourseDto>,
 ): Promise<Partial<CourseDto> | ErrorResponse> => {
     try {
         const payload = format.buildPayloadString(

@@ -1,1 +1,1 @@
-export * from "./transform.type"
+export * from "./structure.type"

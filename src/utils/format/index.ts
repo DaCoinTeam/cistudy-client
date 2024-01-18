@@ -1,4 +1,4 @@
-import { Transform } from "@services"
+import { Structure } from "@services"
 import { Address } from "web3"
 
 const sanitizeNumericInput = (input: string): string | null => {
@@ -35,7 +35,7 @@ const parseStringToNumberMultiply = (
 }
 
 const buildPayloadString = <T extends object>(
-    structure?: Transform<T>,
+    structure?: Structure<T>,
     currentPath: string[] = []
 ): string => {
     if (!structure) {
@@ -70,7 +70,7 @@ const buildPayloadString = <T extends object>(
 }
 
 const buildTokenizedPayloadString = <T extends object>(
-    structure?: Transform<T>,
+    structure?: Structure<T>,
 ) => {
     const data = buildPayloadString(structure)
     return `data { ${data} } tokens { accessToken, refreshToken }`
