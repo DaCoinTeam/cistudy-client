@@ -1,8 +1,4 @@
-
-import Post from "./post.interface"
-import PostContent from "./post-content.interface"
-import User from "./user.interface"
-import Course from "./course.inteface"
+export * from "./dtos"
 import Response from "./response.interface"
 
-export type { Post, PostContent, User, Course, Response }
+export type { Response }

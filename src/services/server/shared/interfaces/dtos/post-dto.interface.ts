@@ -1,6 +1,6 @@
-import PostContentDto from "./post-content.interface"
+import PostContentDto from "./post-content-dto.interface"
 
-export default interface Post {
+export default interface PostDto {
   postId: string;
   title: string;
   creatorId: string;

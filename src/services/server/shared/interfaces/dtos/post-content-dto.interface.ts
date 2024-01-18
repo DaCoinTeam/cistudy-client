@@ -1,6 +1,6 @@
-import { ContentType } from "../enums"
+import { ContentType } from "../../enums"
 
-export default interface PostContent {
+export default interface PostContentDto {
   postContentId: string;
   index: number;
   content: string;

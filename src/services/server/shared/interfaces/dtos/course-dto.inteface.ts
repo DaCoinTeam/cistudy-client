@@ -1,10 +1,10 @@
-import { VerifiedStatus } from "../enums"
+import { VerifiedStatus } from "../../enums"
 
 export interface CourseIncludes {
   time?: number;
 }
 
-export default interface Course {
+export default interface CourseEntity {
   courseId?: string;
   title?: string;
   thumbnailUrl?: string;

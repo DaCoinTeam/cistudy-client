@@ -4,7 +4,7 @@ import {
     ErrorResponse,
     storage,
 } from "@utils"
-import { Response, User } from "../../../shared"
+import { Response, UserDto } from "../../../shared"
 
 const BASE_URL = `${environment.endpoint().restful}/auth/sign-in`
 
@@ -13,11 +13,11 @@ const signIn = async (
         email: string,
         password: string
     }
-): Promise<User | ErrorResponse> => {
+): Promise<UserDto | ErrorResponse> => {
     try {
         const url = storage.appendClientIdToQuery(BASE_URL)!
         const response = await axios.post(url, params)
-        const { data , tokens } = response.data as Response<User>
+        const { data , tokens } = response.data as Response<UserDto>
         
         storage.saveTokens(tokens)
 

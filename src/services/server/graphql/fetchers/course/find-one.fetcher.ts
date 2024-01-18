@@ -1,5 +1,5 @@
 import { ExtensionsWithOriginalError } from "../../shared"
-import { Course, Structure } from "../../../shared"
+import { CourseDto, Structure } from "../../../shared"
 import { ErrorResponse, format } from "@utils"
 import client from "../client"
 import { ApolloError, gql } from "@apollo/client"
@@ -8,8 +8,8 @@ const findOne = async (
     params: {
         courseId: string
       },
-    structure?: Structure<Course>,
-): Promise<Partial<Course> | ErrorResponse> => {
+    structure?: Structure<CourseDto>,
+): Promise<Partial<CourseDto> | ErrorResponse> => {
     try {
         const payload = format.buildPayloadString(
             structure
@@ -27,7 +27,7 @@ const findOne = async (
             }
         })
 
-        return data.findOne as Partial<Course>
+        return data.findOne as Partial<CourseDto>
     } catch (ex) {
         console.log(ex)
         const _ex = ex as ApolloError
