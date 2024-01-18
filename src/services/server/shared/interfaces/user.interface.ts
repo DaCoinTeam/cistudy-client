@@ -1,7 +1,7 @@
 import { UserKind, UserRole } from "../enums"
 
 
-export default interface UserDto {
+export default interface User {
   userId: string;
   email?: string;
   password?: string;

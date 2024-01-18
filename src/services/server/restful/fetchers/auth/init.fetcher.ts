@@ -6,13 +6,13 @@ import {
     StatusCode,
     storage,
 } from "@utils"
-import { Response, UserDto } from "../../../shared"
+import { Response, User } from "../../../shared"
 
 const BASE_URL = `${environment.endpoint().restful}/auth/init`
 
 const init = async (
     authTokenType: AuthTokenType = AuthTokenType.Access
-): Promise<UserDto | ErrorResponse> => {
+): Promise<User | ErrorResponse> => {
     try {
         const url = storage.appendClientIdToQuery(BASE_URL)!
 
@@ -22,7 +22,7 @@ const init = async (
             },
         })
 
-        const { data , tokens } = response.data as Response<UserDto>
+        const { data , tokens } = response.data as Response<User>
 
         if (authTokenType === AuthTokenType.Refresh) storage.saveTokens(tokens)
 

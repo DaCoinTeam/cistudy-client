@@ -1,5 +1,5 @@
 import { ExtensionsWithOriginalError } from "../../shared"
-import { PostDto, Structure } from "../../../shared"
+import { Post, Structure } from "../../../shared"
 import { ErrorResponse, format } from "@utils"
 import client from "../client"
 import { ApolloError, gql } from "@apollo/client"
@@ -8,8 +8,8 @@ const findOnePost = async (
     params: {
         postId: string
       },
-    structure?: Structure<PostDto>,
-): Promise<Partial<PostDto> | ErrorResponse> => {
+    structure?: Structure<Post>,
+): Promise<Partial<Post> | ErrorResponse> => {
     try {
         const payload = format.buildPayloadString(
             structure
@@ -27,7 +27,7 @@ const findOnePost = async (
             }
         })
 
-        return data.findOnePost as Partial<PostDto>
+        return data.findOnePost as Partial<Post>
     } catch (ex) {
         console.log(ex)
         const _ex = ex as ApolloError

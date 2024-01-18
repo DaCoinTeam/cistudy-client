@@ -4,7 +4,7 @@ export interface CourseIncludes {
   time?: number;
 }
 
-export default interface CourseDto {
+export default interface Course {
   courseId?: string;
   title?: string;
   thumbnailUrl?: string;
