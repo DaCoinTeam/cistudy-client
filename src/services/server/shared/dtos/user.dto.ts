@@ -27,27 +27,3 @@ export interface UserDto {
   externalId: string;
 }
 
-<<<<<<< HEAD
-export interface TokenizedResponse<T extends object> {
-  data: T;
-  tokens: Tokens
-}
-
-export const userKeys : (keyof UserDto)[] = [
-    "avatarUrl",
-    "balance",
-    "birthdate",
-    "email",
-    "externalId",
-    "firstName",
-    "lastName",
-    "password",
-    "phoneNumber",
-    "role",
-    "userId",
-    "verified",
-    "kind",
-    "walletId",
-]
-=======
->>>>>>> f339dc65e04653780a29596b2f8d3be10ec66bc1
