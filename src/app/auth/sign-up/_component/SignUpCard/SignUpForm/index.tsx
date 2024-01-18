@@ -43,15 +43,15 @@ const SignUpForm = () => {
                 <div>
                     <Input
                         type='date'
-                        label='Birthday'
+                        label='birthdate'
                         placeholder='Enter your date of birth'
-                        name='birthday'
+                        name='birthdate'
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        isInvalid={!!(formik.errors.birthday && formik.touched.birthday)}
+                        isInvalid={!!(formik.errors.birthdate && formik.touched.birthdate)}
                         errorMessage={
-                            formik.touched.birthday
-                                ? (formik.errors.birthday as ReactNode)
+                            formik.touched.birthdate
+                                ? (formik.errors.birthdate as ReactNode)
                                 : undefined
                         }
                     />

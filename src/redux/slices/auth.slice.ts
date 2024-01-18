@@ -22,7 +22,7 @@ export interface User {
   walletId?: string;
   firstName?: string;
   lastName?: string;
-  birthday?: Date;
+  birthdate?: Date;
   kind: UserKind;
   externalUrl: string;
 }
