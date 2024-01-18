@@ -10,7 +10,7 @@ const httpLink = createHttpLink({
 const link = (type: AuthTokenType | null = null) =>
     setContext((_, { headers }) => {
         if (!type) return headers
-        
+
         const token = storage.getAuthToken(type)
         return {
             headers: {
@@ -20,8 +20,10 @@ const link = (type: AuthTokenType | null = null) =>
         }
     })
 
-export const client = (type: AuthTokenType | null = null) =>
+const client = (type: AuthTokenType | null = null) =>
     new ApolloClient({
         link: link(type).concat(httpLink),
         cache: new InMemoryCache(),
     })
+
+export default client

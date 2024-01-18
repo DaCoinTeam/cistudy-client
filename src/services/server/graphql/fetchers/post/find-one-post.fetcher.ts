@@ -1,7 +1,7 @@
 import { ExtensionsWithOriginalError } from "../../shared"
 import { PostDto, Structure } from "../../../shared"
 import { ErrorResponse, format } from "@utils"
-import { client } from "../client"
+import client from "../client"
 import { ApolloError, gql } from "@apollo/client"
 
 const findOnePost = async (

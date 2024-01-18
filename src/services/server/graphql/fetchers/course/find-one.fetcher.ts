@@ -1,7 +1,7 @@
 import { ExtensionsWithOriginalError } from "../../shared"
 import { CourseDto, Structure } from "../../../shared"
 import { ErrorResponse, format } from "@utils"
-import { client } from "../client"
+import client from "../client"
 import { ApolloError, gql } from "@apollo/client"
 
 const findOne = async (
