@@ -1,16 +1,7 @@
-export enum UserRole {
-  User = "User",
-  Moderator = "Moderator",
-  Administrator = "Administrator",
-}
+import { UserKind, UserRole } from "../enums"
 
-export enum UserKind {
-  Local = "Local",
-  Google = "Google",
-  Facebook = "Facebook",
-}
 
-export interface UserDto {
+export default interface UserDto {
   userId: string;
   email?: string;
   password?: string;

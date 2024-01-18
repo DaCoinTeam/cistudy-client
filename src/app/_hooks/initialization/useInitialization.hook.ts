@@ -8,16 +8,12 @@ const useInitialization = () => {
     const dispath: AppDispatch = useDispatch()
     useEffect(() => {
         storage.generateClientId()
-        // const x = await server.graphql.course.findOne({
-        //     courseId: "04d72365-f6f8-46bb-9640-68a93e98b6fa",
-        // }, {
-        //     courseId : true,
-        //     description: true,
-        //     thumbnailUrl: true,
-        //     includes : {
-        //         time: true
-        //     }
-        // })
+        server.graphql.course.findOne({
+            courseId: "04d72365-f6f8-46bb-9640-68a93e98b6fa",
+        }, {
+            courseId : true,
+            description: true
+        }).then(x => console.log(x))
     
         const handleEffect = async () => {
             const response = await server.restful.auth.init()

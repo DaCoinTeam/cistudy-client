@@ -1,33 +1,33 @@
-import { ExtensionsWithOriginalError } from "../shared"
-import { CourseDto, Structure } from "../../shared"
+import { ExtensionsWithOriginalError } from "../../shared"
+import { PostDto, Structure } from "../../../shared"
 import { ErrorResponse, format } from "@utils"
-import { client } from "./client"
+import { client } from "../client"
 import { ApolloError, gql } from "@apollo/client"
 
-export const findOne = async (
+const findOnePost = async (
     params: {
-        courseId: string
+        postId: string
       },
-    structure?: Structure<CourseDto>,
-): Promise<Partial<CourseDto> | ErrorResponse> => {
+    structure?: Structure<PostDto>,
+): Promise<Partial<PostDto> | ErrorResponse> => {
     try {
         const payload = format.buildPayloadString(
             structure
         )
         const { data } = await client().query({
             query: gql`
-            query findOne($courseId: ID!) {
-    findOne(input: { courseId: $courseId }) {
+            query FindOnePost($postId: ID!) {
+    findOnePost(input: { postId: $postId }) {
       ${payload}
     }
   }
           `,
             variables : {
-                courseId : params.courseId
+                postId : params.postId
             }
         })
 
-        return data.findById as Partial<CourseDto>
+        return data.findOnePost as Partial<PostDto>
     } catch (ex) {
         console.log(ex)
         const _ex = ex as ApolloError
@@ -38,3 +38,5 @@ export const findOne = async (
         return error
     }
 }
+
+export default findOnePost

@@ -3,7 +3,7 @@ import restful from "./restful"
 
 export * from "./graphql"
 export * from "./restful"
-export * from "./shared/dtos"
+export * from "./shared"
 
 const server = {
     graphql,

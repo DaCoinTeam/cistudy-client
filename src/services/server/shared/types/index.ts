@@ -1,1 +1,3 @@
-export * from "./structure.type"
+import Structure from "./structure.type"
+
+export type { Structure }

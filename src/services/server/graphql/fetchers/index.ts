@@ -1,1 +1,2 @@
-export * from "./course.fetcher"
+export * from "./course"
+export * from "./post"
