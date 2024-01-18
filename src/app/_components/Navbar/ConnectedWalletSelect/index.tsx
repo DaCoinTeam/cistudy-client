@@ -12,14 +12,9 @@ import { RootState } from "@redux"
 import { useSelector } from "react-redux"
 import utils from "@utils"
 import { useRouter } from "next/navigation"
-import { MetamaskContext } from "@app/_hooks"
 
 const ConnectedWalletSelect = () => {
     const account = useSelector((state: RootState) => state.blockchain.account)
-    const metamaskContext = useContext(MetamaskContext)
-    if (metamaskContext === null) return
-    const { web3State } = metamaskContext
-    const { setWeb3 } = web3State
 
     const router = useRouter()
 
@@ -33,7 +28,7 @@ const ConnectedWalletSelect = () => {
         {
             key: "disconnect",
             text: "Disconnect",
-            handleOnPress: () => setWeb3(null),
+            handleOnPress: null,
             isDanger: true,
         },
     ]
