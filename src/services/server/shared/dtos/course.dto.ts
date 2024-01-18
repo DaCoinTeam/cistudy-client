@@ -1,4 +1,4 @@
-export enum VerifyStatus {
+export enum VerifiedStatus {
   Pending = "Pending",
   Approved = "Approved",
   Rejected = "Rejected",
@@ -14,7 +14,7 @@ export interface CourseDto {
   thumbnailUrl?: string;
   description?: string;
   price?: number;
-  verifyStatus?: VerifyStatus;
+  verifiedStatus?: VerifiedStatus;
   isDraft?: boolean;
   creatorId?: string;
   isDeleted?: string;
@@ -27,7 +27,6 @@ export const courseKeys : (keyof CourseDto)[] = [
     "courseId",
     "creatorId",
     "description",
-    "includes",
     "isDeleted",
     "isDraft",
     "previewVideoUrl",
@@ -35,5 +34,5 @@ export const courseKeys : (keyof CourseDto)[] = [
     "targets",
     "thumbnailUrl",
     "title",
-    "verifyStatus"
+    "verifiedStatus"
 ]

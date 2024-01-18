@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext } from "react"
+import React from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "@redux"
 import { ChainId } from "@config"
@@ -12,16 +12,9 @@ import {
     DropdownMenu,
     DropdownTrigger,
 } from "@nextui-org/react"
-import { MetamaskContext } from "@app/_hooks"
-import { MetamaskApis } from "@blockchain"
 
 const ConnectedChain = () => {
     const chainId = useSelector((state: RootState) => state.blockchain.chainId)
-    
-    const metamaskContext = useContext(MetamaskContext)
-    if (metamaskContext === null) return
-    const { ethereumState } = metamaskContext
-    const { ethereum } = ethereumState
 
     const connectedchainInfos = [
         {
@@ -72,18 +65,18 @@ const ConnectedChain = () => {
             <DropdownMenu aria-label="Static Actions">
                 {connectedchainInfos.map(chain => {
                     const _handleSwitch = async () => {
-                        if (ethereum === null) return
-                        const metamaskApis = new MetamaskApis(ethereum)
-                        const response = await metamaskApis.switchEthereumChain(chain.chainId)
-                        console.log(response)
-                        if (!response) return 
-                        const code = response.code
-                        if (!code) return 
-                        console.log(1)
-                        if (code != 4902) return
-                        console.log(2)
-                        const _res = await metamaskApis.addEthereumChain(chain.chainId)
-                        console.log(_res)
+                        // if (ethereum === null) return
+                        // const metamaskApis = new MetamaskApis(ethereum)
+                        // const response = await metamaskApis.switchEthereumChain(chain.chainId)
+                        // console.log(response)
+                        // if (!response) return 
+                        // const code = response.code
+                        // if (!code) return 
+                        // console.log(1)
+                        // if (code != 4902) return
+                        // console.log(2)
+                        // const _res = await metamaskApis.addEthereumChain(chain.chainId)
+                        // console.log(_res)
                     }
                     return <DropdownItem onPress={_handleSwitch} startContent={<Image radius="none" src={chain.imageUrl} className="w-5 h-5" />} key={chain.chainId}> {chain.text} </DropdownItem>
                 })}

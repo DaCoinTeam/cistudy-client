@@ -1,3 +1,4 @@
+import { Structure } from "@services"
 import { Address } from "web3"
 
 const sanitizeNumericInput = (input: string): string | null => {
@@ -33,38 +34,45 @@ const parseStringToNumberMultiply = (
     return parseNumberToString(parsedNumber)
 }
 
-const createPayloadString = <T>(
-    keys: T[],
-    fields: T[] = [],
-    included: boolean = false
+const buildPayloadString = <T extends object>(
+    structure?: Structure<T>,
+    currentPath: string[] = []
 ): string => {
-    let selected: T[] = []
-
-    if (included) {
-        for (const field of fields) {
-            if (!selected.includes(field) && keys.includes(field)) {
-                selected.push(field)
+    if (!structure) {
+        return ""
+    }
+    const keys = Object.keys(structure)
+    const trueKeys = keys.filter((key, index) => {
+        const value = structure[key]
+        if (typeof value === "boolean") {
+            if (structure[key]) {
+                currentPath.push(key)
+                if (index !== keys.length - 1) {
+                    currentPath.push(",")
+                }
             }
+        } else {
+            currentPath.push(key)
+            currentPath.push("{")
+            buildPayloadString(value, currentPath)
+            currentPath.push("}")
         }
-    } else {
-        selected = keys
-        for (const field of fields) {
-            if (selected.includes(field)) {
-                const indexToRemove = selected.indexOf(field)
-                selected.slice(indexToRemove, 1)
-            }
+    })
+
+    if (trueKeys.length) {
+        for (let i = 0; i < trueKeys.length; i++) {
+            currentPath.push(trueKeys[i])
+            if (i !== trueKeys.length - 1) currentPath.push(",")
         }
     }
 
-    return selected.join(", ")
+    return currentPath.join(" ")
 }
 
-const createTokenizedPayloadString = <T>(
-    keys: T[],
-    fields: T[] = [],
-    excluded: boolean = true
+const buildTokenizedPayloadString = <T extends object>(
+    structure?: Structure<T>,
 ) => {
-    const data = createPayloadString(keys, fields, excluded)
+    const data = buildPayloadString(structure)
     return `data { ${data} } tokens { accessToken, refreshToken }`
 }
 
@@ -74,8 +82,8 @@ const format = {
     parseStringToNumber,
     parseNumberToString,
     parseStringToNumberMultiply,
-    createPayloadString,
-    createTokenizedPayloadString,
+    buildPayloadString,
+    buildTokenizedPayloadString,
 }
 
 export default format

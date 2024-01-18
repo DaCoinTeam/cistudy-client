@@ -2,7 +2,7 @@ import { Button } from "@nextui-org/react"
 import React from "react"
 import GoogleIcon from "./GoogleIcon"
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import { thirdParty, server, FilterMode } from "@services"
+import { thirdParty, server } from "@services"
 import { AppDispatch, setUser } from "@redux"
 import { useDispatch } from "react-redux"
 import { AxiosError } from "axios"
@@ -18,24 +18,24 @@ const SignInByGoogleIcon = () => {
         const credential = await signInWithPopup(auth, provider)
 
         const token = await credential.user.getIdToken()
-        const user = await server.graphql.auth.verifyGoogleAccessToken(
-            {
-                token
-            }
-            , {
-                filterMode: FilterMode.Exclude,
-                fields: ["userId"]
-            }
-        )
+        // const user = await server.graphql.auth.verifyGoogleAccessToken(
+        //     {
+        //         token
+        //     }
+        //     , {
+        //         filterMode: FilterMode.Exclude,
+        //         fields: ["userId"]
+        //     }
+        // )
             
-        if (typeof user === typeof AxiosError){
-            console.log("A")
-        }
+        // if (typeof user === typeof AxiosError){
+        //     console.log("A")
+        // }
 
-        if (!user) {
-            return
-        }
-        dispatch(setUser(user))
+        // if (!user) {
+        //     return
+        // }
+        // dispatch(setUser(user))
     }
 
     return (
