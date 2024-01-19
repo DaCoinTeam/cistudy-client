@@ -1,8 +1,6 @@
 import { ErrorResponse } from "@utils"
 
-interface ExtensionsWithOriginalError {
+export default interface ExtensionsWithOriginalError {
   originalError: ErrorResponse;
   [key: string]: unknown;
 }
-
-export default ExtensionsWithOriginalError

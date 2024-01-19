@@ -1,7 +1,7 @@
-import { signUp, init, signIn, verifyGoogleAccessToken } from "./fetchers"
+import auth from "./auth"
 
 const restful = {
-    auth: { signUp, init, signIn, verifyGoogleAccessToken },
+    auth,
 }
 
 export default restful

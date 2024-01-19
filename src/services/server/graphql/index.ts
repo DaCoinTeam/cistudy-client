@@ -1,12 +1,9 @@
-export * from "./fetchers"
-export * from "./shared"
-
-import { findOne } from "./fetchers"
+import course from "./course"
+import post from "./post"
 
 const graphql = {
-    course: {
-        findOne
-    }
+    course,
+    post
 }
 
 export default graphql

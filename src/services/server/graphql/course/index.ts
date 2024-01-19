@@ -1,14 +1,15 @@
-import { ExtensionsWithOriginalError } from "../../shared"
-import { CourseDto, Structure } from "../../../shared"
+import { ExtensionsWithOriginalError } from "../shared"
+import { CourseDto, Structure } from "../../shared"
 import { ErrorResponse, format } from "@utils"
-import client from "../client"
+import client from "../shared/client"
 import { ApolloError, gql } from "@apollo/client"
+import { DeepPartial } from "@apollo/client/utilities"
 
 const findOne = async (
     params: {
         courseId: string
       },
-    structure?: Structure<CourseDto>,
+    structure?: Structure<DeepPartial<CourseDto>>,
 ): Promise<Partial<CourseDto> | ErrorResponse> => {
     try {
         const payload = format.buildPayloadString(
@@ -39,4 +40,8 @@ const findOne = async (
     }
 }
 
-export default findOne
+const course = {
+    findOne
+}
+
+export default course
