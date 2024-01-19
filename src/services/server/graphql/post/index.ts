@@ -8,27 +8,25 @@ import { DeepPartial } from "@apollo/client/utilities"
 const findManyPosts = async (
     params: {
     courseId: string;
-    pageNumber?: number;
-    pageSize?: number;
+    take: number;
+    skip: number;
   },
     structure?: Structure<DeepPartial<PostDto>>
 ): Promise<Partial<PostDto[]> | ErrorResponse> => {
     try {
-        const pageSize = params.pageSize ?? 5
-        const pageNumber = params.pageNumber ?? 0
         const payload = format.buildPayloadString(structure)
         const { data } = await client().query({
             query: gql`
-            query FindManyPosts($courseId: String!, $pageNumber: Int!, $pageSize: Int!) {
-    findManyPosts(input: { courseId: $courseId, pageNumber: $pageNumber, pageSize: $pageSize }) {
+            query FindManyPosts($courseId: String!,$take: Int!,  $skip: Int!) {
+    findManyPosts(input: { courseId: $courseId, take: $take, skip: $skip}) {
       ${payload}
     }
   }
           `,
             variables: {
                 courseId: params.courseId,
-                pageNumber,
-                pageSize,
+                take: params.take,  
+                skip: params.skip
             },
         })
 

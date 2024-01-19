@@ -2,7 +2,6 @@
 import { Code, Image } from "@nextui-org/react"
 import { ContentType } from "@services"
 import React from "react"
-
 interface PostContentProps {
   className?: string;
   content: string;
@@ -10,6 +9,7 @@ interface PostContentProps {
 }
 
 const PostContent = (props: PostContentProps) => {
+
     const render = (type: ContentType = ContentType.Text): JSX.Element => {
         const contentTypeToRender: Record<ContentType, JSX.Element> = {
             [ContentType.Text]: <div className="text-sm"> {props.content} </div>,
