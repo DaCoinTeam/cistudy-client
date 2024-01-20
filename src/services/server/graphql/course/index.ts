@@ -5,7 +5,7 @@ import client from "../shared/client"
 import { ApolloError, gql } from "@apollo/client"
 import { DeepPartial } from "@apollo/client/utilities"
 
-const findOne = async (
+const findOneCourse = async (
     params: {
         courseId: string
       },
@@ -17,8 +17,8 @@ const findOne = async (
         )
         const { data } = await client().query({
             query: gql`
-            query findOne($courseId: ID!) {
-    findOne(input: { courseId: $courseId }) {
+            query FindOneCourse($courseId: ID!) {
+    findOneCourse(input: { courseId: $courseId }) {
       ${payload}
     }
   }
@@ -40,8 +40,35 @@ const findOne = async (
     }
 }
 
+const findManyCourses = async (
+    structure?: Structure<DeepPartial<CourseDto>>
+): Promise<Partial<CourseDto[]> | ErrorResponse> => {
+    try {
+        const payload = format.buildPayloadString(structure)
+        const { data } = await client().query({
+            query: gql`
+            query FindManyCourses() {
+    findManyCourses {
+      ${payload}
+    }
+  }
+          `
+        })
+        return data.findManyCourses as Partial<CourseDto[]>
+    } catch (ex) {
+        console.log(ex)
+        const _ex = ex as ApolloError
+        const error = (
+      _ex.graphQLErrors[0].extensions as ExtensionsWithOriginalError
+        ).originalError
+
+        return error
+    }
+}
+
 const course = {
-    findOne
+    findOneCourse,
+    findManyCourses
 }
 
 export default course
