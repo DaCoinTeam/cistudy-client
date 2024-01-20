@@ -1,7 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-type Structure<T> =
-  T extends (infer U)[] ? { [K in keyof U]: Structure<U[K]> } :
-  T extends Record<string, any> ? { [K in keyof T]: Structure<T[K]> } :
-  boolean;
+type Scalar = object | string | number | boolean;
+type Atomic = Scalar | Array<Scalar>;
+
+type RecursiveStructure<T> = T extends (infer U)[]
+  ? { [V in keyof U]: RecursiveStructure<U[V]> }
+  : (T extends Record<string, Atomic>
+  ? { [V in keyof T]: RecursiveStructure<T[V]> }
+  : boolean)
+
+type Structure<T> = RecursiveStructure<T> extends Record<string, Atomic> ?
+RecursiveStructure<T> : Record<string, Atomic>
 
 export default Structure

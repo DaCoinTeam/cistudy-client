@@ -11,16 +11,20 @@ export const PostContext = createContext<PostDto | null>(null)
 
 const WrappedMiddleLayout = (props: WrappedMiddleLayoutProps) => {
     const { state, actions } = useContext(MiddleLayoutContext)!
-    const { posts } = state
+    const { posts, atEndOfPosts } = state
     const { handleAppendPosts } = actions
+
+    const onLoadMore = () => handleAppendPosts()
+
     return (
         <InfiniteScroll //new
+            className="flex flex-col gap-12"
             pageStart={0}
-            loadMore={handleAppendPosts}
-            hasMore={true || false}
+            loadMore={onLoadMore}
+            hasMore={!atEndOfPosts}
             loader={
                 <div className="loader" key={0}>
-          Loading ...
+            Loading ...
                 </div>
             }
         >

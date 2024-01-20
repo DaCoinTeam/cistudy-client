@@ -6,6 +6,7 @@ import "video.js/dist/video-js.css"
 import "./video.css"
 
 interface VideoProps {
+  className?: string;
   options?: any;
   onReady?: any;
 }
@@ -16,7 +17,7 @@ export const Video = (props: VideoProps) => {
     const { options, onReady } = props
 
     useEffect(() => {
-        if (!videoRef.current) return 
+        if (!videoRef.current) return
 
         if (!playerRef.current) {
             const videoElement = document.createElement("video-js")
@@ -28,8 +29,6 @@ export const Video = (props: VideoProps) => {
                 videojs.log("player is ready")
                 onReady && onReady(player)
             }))
-            
-
         } else {
             const player = playerRef.current
 
@@ -50,8 +49,10 @@ export const Video = (props: VideoProps) => {
     }, [playerRef])
 
     return (
-        <div data-vjs-player>
-            <div ref={videoRef} />
+        <div className={props.className}>
+            <div data-vjs-player>
+                <div ref={videoRef} />
+            </div>
         </div>
     )
 }

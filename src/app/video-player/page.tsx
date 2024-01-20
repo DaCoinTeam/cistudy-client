@@ -2,6 +2,8 @@ import React from "react"
 import ReactPlayer from "react-player"
 import VideoPlayer, { Video } from "./Video"
 import storage from "../../utils/storage"
+import Sections from "./Sections"
+import LectureInfo from "./LectureInfo"
 
 export default function Page() {
     const videoJsOptions = {
@@ -18,8 +20,15 @@ export default function Page() {
         ],
     }
     return (
-        <div>
-            <Video options={videoJsOptions} />
+        <div className="px-6 max-w-[1280px] m-auto pt-12">
+            <div className="grid grid-cols-3  gap-12">
+                <div className="col-span-2">
+                    <Video options={videoJsOptions} />
+                    <LectureInfo />
+                </div>
+
+                <Sections className="col-span-1" />
+            </div>
         </div>
     )
 }

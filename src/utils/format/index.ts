@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Structure } from "@services"
 import { Address } from "web3"
 
@@ -41,6 +42,7 @@ const buildPayloadString = <T extends object>(
     if (!structure) {
         return ""
     }
+
     const keys = Object.keys(structure)
     const trueKeys = keys.filter((key, index) => {
         const value = structure[key]
@@ -48,7 +50,7 @@ const buildPayloadString = <T extends object>(
             if (structure[key]) {
                 currentPath.push(key)
                 if (index !== keys.length - 1) {
-                    currentPath.push(",")
+                    currentPath.push("\n")
                 }
             }
         } else {
