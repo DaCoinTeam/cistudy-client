@@ -1,5 +1,6 @@
 import PostDto from "./post-dto.interface"
 import { VerifiedStatus } from "../../enums"
+import UserDto from "./user-dto.interface"
 
 export interface CourseIncludes {
   time?: number;
@@ -13,7 +14,7 @@ export default interface CourseDto {
   price: number;
   verifiedStatus: VerifiedStatus;
   isDraft: boolean;
-  creatorId: string;
+  creator: UserDto;
   isDeleted: boolean;
   previewVideoUrl: string;
   targets: string;
