@@ -18,7 +18,7 @@ const SignInByGoogleIcon = () => {
         const credential = await signInWithPopup(auth, provider)
 
         const token = await credential.user.getIdToken()
-        const user = await server.graphql.auth.verifyGoogleAccessToken(token)
+        const user = await server.restful.auth.verifyGoogleAccessToken({token})
         if (!user){
             return
         }

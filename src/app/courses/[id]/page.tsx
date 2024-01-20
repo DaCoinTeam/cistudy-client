@@ -1,8 +1,9 @@
 import React from "react"
 import { CoursePreview } from "./_components"
+import { InitializationProviders } from "./_components/CoursePreview/_hook/initialization"
 const Page = () => {
-    return (<div>
+    return (<InitializationProviders>
         <CoursePreview/>
-    </div>)
+    </InitializationProviders>)
 }
 export default Page

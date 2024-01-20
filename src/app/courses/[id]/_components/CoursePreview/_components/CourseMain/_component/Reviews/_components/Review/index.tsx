@@ -15,7 +15,6 @@ const Review = () => {
                 <div className='font-medium dark:text-white items-center'>
                     <p>Jese Leos </p>
                     <p className=' text-sm text-gray-500 dark:text-gray-400'>
-            United Kingdom on{" "}
                         <time dateTime='2017-03-03 19:00'>March 3, 2017</time>
                     </p>
                 </div>

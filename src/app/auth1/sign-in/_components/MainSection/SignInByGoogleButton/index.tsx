@@ -18,24 +18,20 @@ const SignInByGoogleIcon = () => {
         const credential = await signInWithPopup(auth, provider)
 
         const token = await credential.user.getIdToken()
-        // const user = await server.graphql.auth.verifyGoogleAccessToken(
-        //     {
-        //         token
-        //     }
-        //     , {
-        //         filterMode: FilterMode.Exclude,
-        //         fields: ["userId"]
-        //     }
-        // )
+        const user = await server.restful.auth.verifyGoogleAccessToken(
+            {
+                token
+            }
+        )
             
-        // if (typeof user === typeof AxiosError){
-        //     console.log("A")
-        // }
+        if (typeof user === typeof AxiosError){
+            console.log("A")
+        }
 
-        // if (!user) {
-        //     return
-        // }
-        // dispatch(setUser(user))
+        if (!user) {
+            return
+        }
+        dispatch(setUser(user))
     }
 
     return (

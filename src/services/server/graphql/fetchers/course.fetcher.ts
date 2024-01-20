@@ -27,7 +27,7 @@ export const findOne = async (
             }
         })
 
-        return data.findById as Partial<CourseDto>
+        return data.findOne as Partial<CourseDto>
     } catch (ex) {
         console.log(ex)
         const _ex = ex as ApolloError
