@@ -1,6 +1,6 @@
 export default () => {
     return {
-        api: process.env.NEXT_PUBLIC_SERVER_ENDPOINT_API,
-        graphql: process.env.NEXT_PUBLIC_SERVER_ENDPOINT_GRAPHQL,
+        api: process.env.NEXT_PUBLIC_SERVER_ENDPOINT_API as string,
+        graphql: process.env.NEXT_PUBLIC_SERVER_ENDPOINT_GRAPHQL as string,
     }
 }

@@ -2,11 +2,11 @@ import React from "react"
 import { Modal, ModalContent } from "@nextui-org/react"
 import AuthenticationTabs from "./AuthenticationTabs"
 interface AuthenticationModalProps {
-  isOpen: boolean;
-  onOpenChange: () => void;
+  isOpen: boolean
+  onOpenChange: () => void
 }
 
-const AuthenticationModal = ({
+export const AuthenticationModal = ({
     isOpen,
     onOpenChange,
 }: AuthenticationModalProps) => {
@@ -24,4 +24,3 @@ const AuthenticationModal = ({
         </>
     )
 }
-export default AuthenticationModal

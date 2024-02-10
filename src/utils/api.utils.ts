@@ -13,6 +13,21 @@ export const fetchAndCreateSvgBlobUrl = async (url: string) => {
     }
 }
 
+export const fetchAndCreateBlobUrl = async (url: string) => {
+    try {
+        const response = await axios.get(url, {
+            responseType: "text",
+        })
+
+        const contentType = response.headers["content-type"]
+        const blob = new Blob([response.data], { type: contentType })
+        return URL.createObjectURL(blob)
+    } catch (ex) {
+        console.log(ex)
+        return null
+    }
+}
+
 export const convertBigIntsToStringsForResponse = <T>(param: T): T => {
     return JSON.parse(
         JSON.stringify(
@@ -57,5 +72,6 @@ export enum StatusCode {
 
 export const api = {
     parseErrorResponse,
+    fetchAndCreateBlobUrl
 }
 

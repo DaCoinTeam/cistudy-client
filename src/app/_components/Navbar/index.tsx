@@ -18,9 +18,9 @@ import { RootState } from "@redux"
 // import ConnectedWalletSelect from "./ConnectedWalletSelect"
 import { useRouter } from "next/navigation"
 // import ConnectedChain from "./ConnectedChain"
-import { LoginButton } from "./LoginButton"
+import { AuthenticationOrProfileSelect } from "./AuthenticationOrProfileSelect"
 
-const Navbar = () => {
+export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
     // const account = useSelector((state: RootState) => state.blockchain.account)
     const defaultPool = useSelector(
@@ -111,7 +111,7 @@ const Navbar = () => {
                 <div>
                     {account === "" ? <ConnectWalletButton /> : <ConnectedWalletSelect />}
                 </div> */}
-                <LoginButton />
+                <AuthenticationOrProfileSelect />
             </NavbarContent>
 
             <NavbarMenu>
@@ -160,5 +160,3 @@ const Navbar = () => {
         </NextUINavbar>
     )
 }
-
-export default Navbar

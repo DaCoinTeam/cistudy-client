@@ -1,35 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
-
-export enum UserRole {
-  User = "User",
-  Moderator = "Moderator",
-  Administrator = "Administrator",
-}
-
-export enum UserKind {
-  Local = "Local",
-  Google = "Google",
-  Facebook = "Facebook",
-}
-
-export interface User {
-  email?: string;
-  password?: string;
-  avatarUrl?: string;
-  phoneNumber?: string;
-  balance: number;
-  role: UserRole;
-  walletId?: string;
-  firstName?: string;
-  lastName?: string;
-  birthdate?: Date;
-  kind: UserKind;
-  externalUrl: string;
-}
+import { UserEntity } from "@services"
 
 
 export interface AuthSlice {
-    user: User | null;
+    user: UserEntity | null
   }
 
 const initialState: AuthSlice = {
