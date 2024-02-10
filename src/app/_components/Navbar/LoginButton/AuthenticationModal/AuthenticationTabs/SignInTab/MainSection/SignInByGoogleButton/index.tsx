@@ -1,6 +1,6 @@
 import { Button } from "@nextui-org/react"
 import React from "react"
-import GoogleIcon from "./GoogleIcon"
+import { GoogleIcon } from "./GoogleIcon"
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { firebaseAuth, verifyGoogleAccessToken } from "@services"
 import { AppDispatch, setUser } from "@redux"

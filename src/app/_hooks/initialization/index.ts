@@ -1,3 +1,1 @@
-import InitializationProviders from "./InitializationProviders"
-
-export { InitializationProviders }
+export * from "./InitializationProviders"
