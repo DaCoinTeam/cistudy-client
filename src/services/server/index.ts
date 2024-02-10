@@ -1,13 +1,10 @@
-import graphql from "./graphql"
-import restful from "./restful"
-
+export * from "./api"
 export * from "./graphql"
-export * from "./restful"
-export * from "./shared"
 
-const server = {
+import { api } from "./api"
+import { graphql } from "./graphql"
+
+export const server = {
+    api,
     graphql,
-    restful
 }
-
-export default server

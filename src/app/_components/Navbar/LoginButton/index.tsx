@@ -10,7 +10,7 @@ import {
 import AuthenticationModal from "./AuthenticationModal"
 // import { AppButton } from "@app/_shared"
 const user = null
-const LoginButton = () => {
+export const LoginButton = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
     return (
@@ -51,4 +51,3 @@ const LoginButton = () => {
         </>
     )
 }
-export default LoginButton

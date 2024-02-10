@@ -1,18 +1,12 @@
 export * from "./server"
 export * from "./third-party"
 
-export * from "./server"
-export * from "./third-party"
-
-import server from "./server"
-import thirdParty from "./third-party"
-
-export { server, thirdParty }
+import { server } from "./server"
+import { thirdParty } from "./third-party"
 
 const services = {
     server,
-    thirdParty
+    thirdParty,
 }
 
 export default services
-

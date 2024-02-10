@@ -1,7 +1,7 @@
 import React from "react"
 import ReactPlayer from "react-player"
 import VideoPlayer, { Video } from "./Video"
-import storage from "../../utils/storage"
+import storage from "../../utils/storage.utils"
 import Sections from "./Sections"
 import LectureInfo from "./LectureInfo"
 

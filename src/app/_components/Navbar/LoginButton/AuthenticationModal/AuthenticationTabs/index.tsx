@@ -1,13 +1,13 @@
 import React from "react"
-import {Tabs, Tab, Link, Card, CardBody,} from "@nextui-org/react"
+import { Tabs, Tab, Link, Card, CardBody, } from "@nextui-org/react"
 
-import {Key} from "@react-types/shared"
-import SignUpTab from "./SignUpTab"
-import SignInTab from "./SignInTab"
+import { Key } from "@react-types/shared"
+import { SignUpTab } from "./SignUpTab"
+import { SignInTab } from "./SignInTab"
 
 
-const AuthenticationTabs = () => {
-    const initValue : string = "login"
+export const AuthenticationTabs = () => {
+    const initValue: string = "login"
     const [selected, setSelected] = React.useState(initValue)
 
     return (
@@ -17,33 +17,33 @@ const AuthenticationTabs = () => {
                     <Tabs
                         fullWidth
                         size="lg"
-                        variant="underlined" 
+                        variant="underlined"
                         aria-label="Tabs form"
                         selectedKey={selected}
                         onSelectionChange={(key: Key) => { setSelected(key.toString()) }}
                     >
                         <Tab key="login" title="Login" className="py-5">
-                            <SignInTab/>
+                            <SignInTab />
                             <p className="text-center text-small pt-2 ">
-                  Need to create an account?{" "}
-                                <Link size="sm"               
+                                Need to create an account?{" "}
+                                <Link size="sm"
                                     className="text-teal-500 cursor-pointer"
-                                    underline="always" 
+                                    underline="always"
                                     onPress={() => setSelected("sign-up")}>
-                    Sign up
+                                    Sign up
                                 </Link>
                             </p>
-                               
+
                         </Tab>
-                        <Tab key="sign-up" title="Sign up"  className="py-5">
-                            <SignUpTab/>
+                        <Tab key="sign-up" title="Sign up" className="py-5">
+                            <SignUpTab />
                             <p className="text-center text-small pt-2">
-                  Already have an account?{" "}
-                                <Link size="sm" 
+                                Already have an account?{" "}
+                                <Link size="sm"
                                     className="text-teal-500 cursor-pointer"
                                     underline="always"
                                     onPress={() => setSelected("login")}>
-                    Login
+                                    Login
                                 </Link>
                             </p>
                         </Tab>

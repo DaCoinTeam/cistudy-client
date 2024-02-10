@@ -1,8 +1,8 @@
 import React from "react"
-import { FormikProviders } from "./_hooks"
-import { MainSection } from "./_components"
+import { FormikProviders } from "./hooks"
+import { MainSection } from "./MainSection"
 
-const SignInTab = () => {
+export const SignInTab = () => {
     return (
         <FormikProviders>
             <MainSection/>
@@ -10,4 +10,3 @@ const SignInTab = () => {
 
     ) 
 }
-export default SignInTab

@@ -18,7 +18,7 @@ import { RootState } from "@redux"
 // import ConnectedWalletSelect from "./ConnectedWalletSelect"
 import { useRouter } from "next/navigation"
 // import ConnectedChain from "./ConnectedChain"
-import LoginButton from "./LoginButton"
+import { LoginButton } from "./LoginButton"
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)

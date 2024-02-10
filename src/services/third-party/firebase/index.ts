@@ -1,7 +1,7 @@
-import { auth } from "./modules"
+export * from "./auth.firebase"
 
-const firebase = {
-    getAuth : () => auth,
+import { firebaseAuth } from "./auth.firebase"
+
+export const firebase = {
+    auth: firebaseAuth,
 }
-
-export default firebase

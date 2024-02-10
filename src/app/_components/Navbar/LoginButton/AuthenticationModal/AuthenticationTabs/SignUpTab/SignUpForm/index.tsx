@@ -2,9 +2,9 @@ import React, { ReactNode, useContext } from "react"
 import { Input } from "@nextui-org/react"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
 import { AppButton } from "@app/_shared"
-import { FormikContext } from "../_hook/FormikProviders"
+import { FormikContext } from "../hooks/FormikProviders"
 
-const SignUpForm = () => {
+export const SignUpForm = () => {
     const formik = useContext(FormikContext)
     if (formik === null) return
     const [isVisible, setIsVisible] = React.useState(false)
@@ -132,4 +132,3 @@ const SignUpForm = () => {
         </div>
     )
 }
-export default SignUpForm
